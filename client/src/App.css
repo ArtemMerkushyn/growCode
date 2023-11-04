@@ -116,3 +116,57 @@ body {
 .navbar__auth a.active::after {
     transform: translateX(0%);
 }
+
+/*===========================================================================================================*\
+#pages
+\*===========================================================================================================*/
+/*=================================================*\
+#login/register
+\*=================================================*/
+.form {
+    padding: 50px 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form__title {
+    text-transform: uppercase;
+    font-size: 30px;
+    line-height: 30px;
+}
+
+.form__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.form__item input{
+    padding: 10px;
+    max-width: 300px;
+    width: 100%;
+    border-radius: 5px;
+    border: 2px solid #002F34;
+}
+
+.form__item a {
+    color: #002F34;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+}
+
+.form__item a:hover {
+    border-bottom: 2px solid #002F34;
+}
+
+.form__btn {
+    min-width: 120px;
+    padding: 10px;
+    border-radius: 5px;
+    background: #002F34;
+    color: #fff;
+    text-transform: uppercase;
+}
