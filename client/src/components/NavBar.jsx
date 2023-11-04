@@ -7,9 +7,9 @@ export const NavBar = () => {
             <div className="container">
                 <div className="navbar__items">
                     <div className="navbar__navigate">
-                        <Link to={'/'}>
+                        <NavLink className='logo__link' to={'/'}>
                             <div className="logo">growCode</div>
-                        </Link>
+                        </NavLink>
                         <NavLink to={'blog'} >Блог</NavLink>
                         <NavLink to={'forum'} >Форум</NavLink>
                         <NavLink to={'vacancies'} >Вакансії</NavLink>

@@ -43,12 +43,27 @@ body {
 }
 
 .logo {
+    font-size: 20px;
+    line-height: 20px;
     background: #fff;
     padding: 5px 10px;
     border-radius: 10px;
     font-weight: 700;
     text-transform: none;
     color: #002F34;
+    transition: all .2s linear;
+}
+
+.logo:hover {
+    -webkit-text-stroke: 1px #002F34;
+    text-stroke: 1px #002F34;
+    color: transparent;
+}
+
+.logo__link.active .logo {
+    -webkit-text-stroke: 1px #002F34;
+    text-stroke: 1px #002F34;
+    color: transparent;
 }
 
 .navbar__navigate a:not(:first-child),
