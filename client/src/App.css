@@ -8,6 +8,7 @@ body {
     font-family: 'Poppins', sans-serif;
     font-size: 16px;
     line-height: 18px;
+    font-weight: 400;
 }
 
 .container {
@@ -41,6 +42,20 @@ body {
     transition: all .2s linear;
 }
 
+.btn1 {
+    min-width: 120px;
+    padding: 10px;
+    border-radius: 5px;
+    background: #002F34;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    transition: all .1s linear;
+}
+
+.btn1:hover {
+    background: #427D9D;
+}
 /*===========================================================================================================*\
 #navbar
 \*===========================================================================================================*/
@@ -176,23 +191,4 @@ body {
     width: 100%;
     border-radius: 5px;
     border: 2px solid #002F34;
-}
-/*
-.form__item a {
-    color: #002F34;
-    text-decoration: none;
-    border-bottom: 2px solid transparent;
-}
-
-.form__item a:hover {
-    border-bottom: 2px solid #002F34;
-}
-*/
-.form__btn {
-    min-width: 120px;
-    padding: 10px;
-    border-radius: 5px;
-    background: #002F34;
-    color: #fff;
-    text-transform: uppercase;
 }

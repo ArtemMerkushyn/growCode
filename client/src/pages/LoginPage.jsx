@@ -19,7 +19,7 @@ export const LoginPage = () => {
             </label>
             <div className="form__item">
                 <button 
-                    className='form__btn' 
+                    className='btn1' 
                     type='submit'
                 >
                     Увійти
