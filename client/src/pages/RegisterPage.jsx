@@ -24,7 +24,7 @@ export const RegisterPage = () => {
                 >
                     Зареєструватися
                 </button>
-                <Link className='form__link' to={'/login'} >У мене вже є обліковий запис</Link>
+                <Link className='link' to={'/login'} >У мене вже є обліковий запис</Link>
             </div>
         </form>
     );

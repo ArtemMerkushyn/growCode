@@ -24,7 +24,7 @@ export const LoginPage = () => {
                 >
                     Увійти
                 </button>
-                <Link className='form__link' to={'/register'} >Не маю облікового запису</Link>
+                <Link className='link' to={'/register'} >Не маю облікового запису</Link>
             </div>
         </form>
     );
