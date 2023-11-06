@@ -147,7 +147,7 @@ body {
 .navbar__navigate a:not(:first-child):hover::before,
 .navbar__auth a:hover::before,
 .navbar__navigate a:not(:first-child):hover::after,
-.navbar__auth a:hover::after  {
+.navbar__auth a:hover::after {
     transform: translateX(0%);
 }
 

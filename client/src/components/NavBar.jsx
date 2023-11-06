@@ -1,7 +1,20 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { checkIsAuth, logout } from '../redux/features/auth/authSlice.js';
+import { toast } from 'react-toastify';
 
 export const NavBar = () => {
+    const isAuth = useSelector(checkIsAuth);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const logoutHandler = () => {
+        dispatch(logout());
+        window.localStorage.removeItem('token');
+        navigate('/');
+        toast('Ви успішно вийшли');
+    }
     return (
         <div className='navbar'>
             <div className="container">
@@ -15,9 +28,16 @@ export const NavBar = () => {
                         <NavLink to={'vacancies'} >Вакансії</NavLink>
                         <NavLink to={'projects'} >Проекти</NavLink>
                     </div>
-                    <div className="navbar__auth">
-                        <NavLink to={'login'}>Увійти</NavLink>
-                    </div>
+                    {isAuth ? (
+                        <div className="navbar__auth">
+                            <Link to={'/'} onClick={logoutHandler}>Вийти</Link>
+                        </div>
+                        ):(
+                            <div className="navbar__auth">
+                                <NavLink to={'login'}>Увійти</NavLink>
+                            </div>
+                        )
+                    }
                 </div>
             </div>
         </div>
