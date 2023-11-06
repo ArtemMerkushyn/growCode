@@ -23,7 +23,7 @@ export const registerUser = createAsyncThunk(
         } catch (error) {
             console.log(error);
         }
-    }
+    },
 );
 
 export const loginUser = createAsyncThunk(
@@ -41,7 +41,19 @@ export const loginUser = createAsyncThunk(
         } catch (error) {
             console.log(error);
         }
-    }
+    },
+);
+
+export const getMe = createAsyncThunk(
+    'auth/getMe',
+    async () => {
+        try {
+            const { data } = await axios.get('/auth/me');
+            return data;
+        } catch (error) {
+            console.log(error);
+        }
+    },
 )
 
 export const authSlice = createSlice({
@@ -85,6 +97,20 @@ export const authSlice = createSlice({
         [loginUser.rejectWithValue]: (state, action) => {
             state.status = action.payload.message;
             state.isLoading = false;
+        },
+        //get me
+        [getMe.pending]: (state) => {
+            state.isLoading = true;
+            state.status = null;
+        },
+        [getMe.fulfilled]: (state, action) => {
+            state.isLoading = false;
+            state.status = null;
+            state.user = action.payload?.user;
+            state.token = action.payload?.token;
+        },
+        [getMe.rejectWithValue]: (state, action) => {
+            state.status = action.payload.message;
         },
     }
 
