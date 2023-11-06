@@ -73,3 +73,28 @@ export const login = async (req, res) => {
         res.json({ message: 'Ви невірно ввели дані при авторизації.' });
     }
 }
+
+export const getMe = async (req, res) => {
+    try {
+        const user = await User.findById(req.userId);
+        if(!user) {
+            return res.json({ message: 'Такого користувача немає.' });
+        }
+
+        const token = jwt.sign(
+            {
+                id: user._id,
+                username: user.username
+            },
+            secred,
+            { expiresIn: '30d' },
+        );
+
+        return res.json({
+            user,
+            token,
+        });
+    } catch (error) {
+        res.json({ message: 'Немає доступу.'});
+    }
+}
