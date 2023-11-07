@@ -3,6 +3,7 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { checkIsAuth, logout } from '../redux/features/auth/authSlice.js';
 import { toast } from 'react-toastify';
+import { BiUser } from "react-icons/bi";
 
 export const NavBar = () => {
     const isAuth = useSelector(checkIsAuth);
@@ -30,6 +31,9 @@ export const NavBar = () => {
                     </div>
                     {isAuth ? (
                         <div className="navbar__auth">
+                            <NavLink to={'user'}>
+                                <BiUser/>
+                            </NavLink>
                             <Link to={'/'} onClick={logoutHandler}>Вийти</Link>
                         </div>
                         ):(
