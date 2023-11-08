@@ -54,7 +54,19 @@ export const getMe = createAsyncThunk(
             console.log(error);
         }
     },
-)
+);
+
+export const updateUser = createAsyncThunk(
+    'auth/updateUser',
+    async ({ id, updatedUser }) => {
+        try {
+            const { data } = await axios.put(`/auth/${id}`, updatedUser);
+            return data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+);
 
 export const authSlice = createSlice({
     name: 'auth',
@@ -112,8 +124,20 @@ export const authSlice = createSlice({
         [getMe.rejectWithValue]: (state, action) => {
             state.status = action.payload.message;
         },
-    }
-
+        // update user
+        [updateUser.pending]: (state) => {
+            state.isLoading = true;
+            state.status = null;
+        },
+        [updateUser.fulfilled]: (state, action) => {
+            state.isLoading = false;
+            state.status = action.payload.message;
+            state.user = action.payload.user;
+        },
+        [updateUser.rejected]: (state) => {
+            state.isLoading = false;
+        }
+    },
 });
 
 export const checkIsAuth = (state) => Boolean(state.auth.token);
