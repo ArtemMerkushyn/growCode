@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import { BsIncognito } from "react-icons/bs";
+import { AiFillChrome } from "react-icons/ai";
+import { BiLogoReact } from "react-icons/bi";
+import { LiaNode } from "react-icons/lia";
 import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from '../utils/axios.js';
@@ -42,11 +45,24 @@ export const UserPageEdit = () => {
         setDescription('');
         e.preventDefault();
     }
-    
+
+    const getProfessionIcon = (profession) => {
+        switch (profession) {
+            case 'front-end developer':
+                return <BiLogoReact />;
+            case 'backend developer':
+                return <LiaNode />;
+            case 'full-stack developer':
+                return <AiFillChrome />;
+            default:
+                return <BsIncognito />;
+        }
+    }
+
     return (
         <div className='userpage-edit'>
             <div className='userpage__info-avatar'>
-                <BsIncognito/>
+                {getProfessionIcon(profession)}
             </div>
             <div className="userpage-edit__items">
                 <div className="userpage__info-username">
