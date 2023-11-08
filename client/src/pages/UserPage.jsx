@@ -23,9 +23,13 @@ export const UserPage = () => {
                             </Link>
                         </div>
                         <div className="userpage__info-text">
-                            <p>
+                            {user.description ? (
                                 <TextareaAutosize value={user.description}/>
-                            </p>
+                                ) : (
+                                    <p>Інформація про сторінку користувача відсутня</p>
+                                )
+                            }
+                              
                         </div>
                     </div>
                 </div>
