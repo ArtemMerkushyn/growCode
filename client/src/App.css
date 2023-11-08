@@ -251,6 +251,7 @@ body {
 
 .userpage__info-description {
     padding: 20px;
+    width: calc(100% - 150px + 20px);
 }
 
 .userpage__info-username {
@@ -270,6 +271,21 @@ body {
 
 .userpage__info-username svg:hover {
     transform: rotate(90deg);
+}
+
+.userpage__info-text textarea {
+    cursor: default;
+    width: 100%;
+    height: auto;
+    border: none;
+    resize: none;
+    outline: none;
+    text-decoration: none;
+    caret-color: transparent;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 400; 
 }
 /*=======================================================*/
 .userpage-edit {

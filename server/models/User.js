@@ -21,7 +21,7 @@ const UserShema = new mongoose.Schema(
         },
         description: {
             type: String,
-            default: '',
+            default: '13',
         },       
         posts: [
             {

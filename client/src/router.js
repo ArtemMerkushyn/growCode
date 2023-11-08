@@ -32,11 +32,11 @@ export const router = createBrowserRouter([
                 element: <RegisterPage/>
             },
             {
-                path: 'user',
+                path: 'me',
                 element: <UserPage/>
             },
             {
-                path: 'user/edit',
+                path: ':id/edit/user',
                 element: <UserPageEdit/>
             },
             {

@@ -31,7 +31,7 @@ export const NavBar = () => {
                     </div>
                     {isAuth ? (
                         <div className="navbar__auth">
-                            <NavLink to={'user'}>
+                            <NavLink to={'me'}>
                                 <BiUser/>
                             </NavLink>
                             <Link to={'/'} onClick={logoutHandler}>Вийти</Link>
