@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const instance = axios.create({
     //baseURL: 'http://localhost:8080/api'
-    baseURL: 'https://grow-code-l321g5b1j-merkushyndev13s-projects.vercel.app/api'
+    baseURL: 'https://grow-code-api.vercel.app/api'
 });
 
 instance.interceptors.request.use(config => {
