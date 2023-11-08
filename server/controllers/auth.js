@@ -74,6 +74,7 @@ export const login = async (req, res) => {
     }
 }
 
+// get user
 export const getMe = async (req, res) => {
     try {
         const user = await User.findById(req.userId);
@@ -96,5 +97,26 @@ export const getMe = async (req, res) => {
         });
     } catch (error) {
         res.json({ message: 'Немає доступу.'});
+    }
+}
+
+// update user
+export const updateUser = async (req, res) => {
+    try {
+        const { profession, level, description } = req.body;
+
+        const user = await User.findById(req.userId);
+        if(!user) {
+            return res.json({ message: 'Такого користувача немає.' });
+        }
+
+        user.profession = profession;
+        user.level = level;
+        user.description = description;
+
+        await user.save();
+        res.json({ user, message: 'Ви успішно оновили дані Вашої сторінки.' });
+    } catch (error) {
+        res.json(`Щось пішло не так. ${error}`);
     }
 }
