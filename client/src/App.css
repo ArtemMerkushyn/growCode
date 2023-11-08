@@ -64,6 +64,7 @@ body {
     font-weight: 600;
     text-transform: uppercase;
     background: #002F34;
+    margin-bottom: 20px;
 }
 
 .navbar a {
@@ -211,4 +212,49 @@ body {
     width: 100%;
     border-radius: 5px;
     border: 2px solid #002F34;
+}
+/*=================================================*\
+#userpage/userpage-edit
+\*=================================================*/
+.userpage__info {
+    display: flex;
+    gap: 20px;
+}
+
+.userpage__info-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 100px;
+    background: #427D9D;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.userpage__info-avatar svg {
+    fill: #fff;
+    font-size: 100px;
+}
+
+.userpage__info-description {
+    padding: 20px;
+}
+
+.userpage__info-username {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 700;
+}
+
+.userpage__info-username svg {
+    font-size: 26px;
+    fill: #002F34;
+    transition: all .3s linear;
+}
+
+.userpage__info-username svg:hover {
+    transform: rotate(90deg);
 }

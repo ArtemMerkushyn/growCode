@@ -8,6 +8,7 @@ import { Forum } from './pages/Forum.jsx';
 import { Vacancies } from './pages/Vacancies.jsx';
 import { Projects } from './pages/Projects.jsx';
 import { UserPage } from './pages/UserPage.jsx';
+import { UserPageEdit } from './pages/UserPageEdit.jsx';
 
 export const router = createBrowserRouter([
     {
@@ -33,6 +34,10 @@ export const router = createBrowserRouter([
             {
                 path: 'user',
                 element: <UserPage/>
+            },
+            {
+                path: 'user/edit',
+                element: <UserPageEdit/>
             },
             {
                 path: 'forum',
