@@ -67,7 +67,7 @@ export const UserPageEdit = () => {
             </div>
             <div className="userpage-edit__items">
                 <div className="userpage__info-username">
-                    {user.username}
+                    {user ? user.username : (<div>username</div>)}
                 </div>
                 <form className='useredit-form'>
                     <label className='useredit-form__item'>
