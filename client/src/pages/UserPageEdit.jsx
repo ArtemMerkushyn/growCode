@@ -4,7 +4,7 @@ import { BsIncognito } from "react-icons/bs";
 import { AiFillChrome } from "react-icons/ai";
 import { BiLogoReact } from "react-icons/bi";
 import { LiaNode } from "react-icons/lia";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from '../utils/axios.js';
 import { updateUser } from '../redux/features/auth/authSlice.js';
@@ -13,6 +13,7 @@ export const UserPageEdit = () => {
     const [ profession, setProfession ] = useState('');
     const [ level, setLevel ] = useState('');
     const [ description, setDescription ] = useState('');
+    const user = useSelector((state) => state.auth.user);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -66,7 +67,7 @@ export const UserPageEdit = () => {
             </div>
             <div className="userpage-edit__items">
                 <div className="userpage__info-username">
-                    username
+                    {user.username}
                 </div>
                 <form className='useredit-form'>
                     <label className='useredit-form__item'>
