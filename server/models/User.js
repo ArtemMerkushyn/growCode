@@ -11,6 +11,18 @@ const UserShema = new mongoose.Schema(
             type: String,
             required: true,
         },
+        profession: {
+            type: String,
+            default: '',
+        },
+        level: {
+            type: String,
+            default: '',
+        },
+        description: {
+            type: String,
+            default: '',
+        },       
         posts: [
             {
                 type: mongoose.Types.ObjectId,
