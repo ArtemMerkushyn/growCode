@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import { BsIncognito } from "react-icons/bs";
-import { AiOutlineSetting } from "react-icons/ai";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from '../utils/axios.js';
 import { updateUser } from '../redux/features/auth/authSlice.js';
@@ -18,6 +17,8 @@ export const UserPageEdit = () => {
 
     const fetchUserData = async () => {
         const { data } = await axios.get(`/auth/me`);
+        setProfession(data.user.profession);
+        setLevel(data.user.level);
         setDescription(data.user.description);
     }
 
@@ -33,6 +34,13 @@ export const UserPageEdit = () => {
         } catch (error) {
             console.log(error);
         }
+    }
+
+    const clearFormHandler = (e) => {
+        setProfession('');
+        setLevel('');
+        setDescription('');
+        e.preventDefault();
     }
     
     return (
@@ -80,6 +88,7 @@ export const UserPageEdit = () => {
 
                         <button
                             className='btn1 red'
+                            onClick={clearFormHandler}
                         >
                             Відмінити
                         </button>

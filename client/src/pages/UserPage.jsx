@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 
 export const UserPage = () => {
     const user = useSelector((state) => state.auth.user);
+    console.log(user)
     return (
         <div className='userpage'>
             {user ? (
