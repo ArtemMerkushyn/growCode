@@ -69,6 +69,14 @@ body {
 .btn1.red:hover {
     background: #ff0000;
 }
+
+.zero-block {
+    width: 0;
+    height: 0;
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
 /*===========================================================================================================*\
 #navbar
 \*===========================================================================================================*/
@@ -252,6 +260,9 @@ body {
 .userpage__info-description {
     padding: 20px;
     width: calc(100% - 150px + 20px);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
 .userpage__info-username {
@@ -273,6 +284,18 @@ body {
     transform: rotate(90deg);
 }
 
+.userpage__info-tags {
+    display: flex;
+    gap: 5px;
+}
+
+.userpage__info-tags span {
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 50px;
+    background: #427D9D;
+}
+
 .userpage__info-text textarea {
     cursor: default;
     width: 100%;
@@ -286,6 +309,7 @@ body {
     font-size: 15px;
     line-height: 18px;
     font-weight: 400; 
+    overflow: hidden;
 }
 /*=======================================================*/
 .userpage-edit {
