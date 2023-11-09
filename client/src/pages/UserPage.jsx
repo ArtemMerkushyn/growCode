@@ -59,6 +59,13 @@ export const UserPage = () => {
                     </div>
                 </div>
             ) : (<div>Загрузка</div>)}
+            <div className="userpage__posts">
+                <div className="userpage__posts-header">
+                    <h3 className='title1'>Мої пости</h3>
+                    <Link><div className='add'></div></Link>
+                </div>
+                <div className="userpage__posts-container"></div>
+            </div>
         </div>
     );
 }
