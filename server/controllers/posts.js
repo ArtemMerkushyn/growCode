@@ -4,6 +4,10 @@ import User from '../models/User.js';
 export const createPost = async (req, res) => {
     try {
         const { imgUrl, title, text } = req.body;
+        // Проверка на пустые значения title и text
+        if (!title || !text) {
+            return res.json({ message: 'Поля заголовку і тексту не можуть бути порожніми' });
+        }
         const user = await User.findById(req.userId);
 
         const newPost = new Post({
@@ -23,3 +27,19 @@ export const createPost = async (req, res) => {
         res.json({ message: `Щось пішло не так. ${error}` });
     }
 }
+
+// get my posts
+export const getMyPosts = async (req, res) => {
+    try {
+       const user = await User.findById(req.userId);
+       const list = await Promise.all(
+          user.posts.map((post) => {
+              return Post.findById(post._id);
+          }),
+       );
+ 
+       res.json(list);
+    } catch (error) {
+       res.json({ message: 'Щось пішло не так.' });
+    }
+ }

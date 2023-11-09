@@ -19,6 +19,9 @@ textarea {
     outline: none;
     resize: none;
     font-family: inherit;
+    overflow: hidden;
+    background: transparent;
+    border: none;
 }
 
 .container {
@@ -253,7 +256,78 @@ textarea {
     line-height: 18px;
     font-weight: 500;
 }
+/*===========================================================================================================*\
+#post-item
+\*===========================================================================================================*/
+.post-item {
+    width: 100%;
+}
 
+.post-item a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.post-item__img img {
+    width: 100%;
+}
+
+.post-item__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-item__info-username {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    
+}
+
+.post-item__info-username .userpage__info-avatar {
+    width: 30px;
+    height: 30px;
+}
+
+.post-item__info-username .userpage__info-avatar svg {
+    width: 70%;
+    height: 70%;
+}
+
+.post-item__text textarea {
+    width: 100%;
+}
+
+.post-item__text.cropped textarea {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 5px;
+    max-height: 64px;
+    position: relative;
+    z-index: -1;
+}
+.post-item__counter {
+    display: flex;
+    gap: 10px;
+}
+
+.post-item__counter-btn {
+    border: none;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    font-size: 16px;
+}
+
+.post-item__counter-btn svg {
+    font-size: 20px;
+    fill: #002F34;
+}
 /*===========================================================================================================*\
 #pages
 \*===========================================================================================================*/
@@ -291,6 +365,10 @@ textarea {
 /*=================================================*\
 #userpage/userpage-edit
 \*=================================================*/
+.user-page {
+
+}
+
 .userpage__info {
     display: flex;
     gap: 20px;
@@ -367,10 +445,21 @@ textarea {
     overflow: hidden;
 }
 
+.userpage__posts-container {
+    padding-right: 5px;
+    border-right: 2px solid #000;
+    margin-bottom: 20px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .userpage__posts-header {
     display: flex;
     align-items: center;
     gap: 5px;
+    margin-bottom: 10px;
 }
 /*=======================================================*/
 .userpage-edit {

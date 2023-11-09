@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from '../utils/axios.js';
 import { useSelector } from 'react-redux';
 import { BsIncognito } from "react-icons/bs";
 import TextareaAutosize from 'react-textarea-autosize';
@@ -6,9 +7,26 @@ import { AiOutlineSetting, AiFillChrome } from "react-icons/ai";
 import { BiLogoReact } from "react-icons/bi";
 import { LiaNode } from "react-icons/lia";
 import { Link } from 'react-router-dom';
+import { UserPostsItem } from '../components/UserPostItem';
 
 export const UserPage = () => {
     const user = useSelector((state) => state.auth.user);
+    const [ posts, setPosts ] = useState([]);
+
+    const fetchMyPosts = async () => {
+        try {
+            const { data } = await axios.get('/posts/user/me');
+            // сортую пости по часу створення в зворотньому порядку
+            const sortedPosts = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            setPosts(sortedPosts);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        fetchMyPosts();
+     }, []);
 
     const getProfessionIcon = (profession) => {
         switch (profession) {
@@ -64,7 +82,11 @@ export const UserPage = () => {
                     <h3 className='title1'>Мої пости</h3>
                     <Link to={'/add/posts'}><div className='add'></div></Link>
                 </div>
-                <div className="userpage__posts-container"></div>
+                <div className="userpage__posts-container">
+                    {posts?.map((post, idx) => {
+                        return <UserPostsItem post={post} key={idx}/>
+                    })}
+                </div>
             </div>
         </div>
     );
