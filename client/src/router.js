@@ -9,6 +9,7 @@ import { Vacancies } from './pages/Vacancies.jsx';
 import { Projects } from './pages/Projects.jsx';
 import { UserPage } from './pages/UserPage.jsx';
 import { UserPageEdit } from './pages/UserPageEdit.jsx';
+import { AddPostsPage } from './pages/AddPostsPage.jsx';
 
 export const router = createBrowserRouter([
     {
@@ -18,10 +19,6 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 element: <MainPage/>
-            },
-            {
-                path: 'blog',
-                element: <Blog/>
             },
             {
                 path: 'login',
@@ -38,6 +35,14 @@ export const router = createBrowserRouter([
             {
                 path: ':id/edit/user',
                 element: <UserPageEdit/>
+            },
+            {
+                path: 'blog',
+                element: <Blog/>
+            },
+            {
+                path: 'add/posts',
+                element: <AddPostsPage/>
             },
             {
                 path: 'forum',

@@ -11,6 +11,16 @@ body {
     font-weight: 400;
 }
 
+input {
+    outline: none;
+}
+
+textarea {
+    outline: none;
+    resize: none;
+    font-family: inherit;
+}
+
 .container {
     max-width: 1024px;
     margin: 0 auto;
@@ -113,6 +123,12 @@ body {
     font-size: 24px;
     line-height: 24px;
     text-transform: uppercase;
+    font-weight: 700;
+}
+
+.title-post {
+    font-size: 18px;
+    line-height: 24px;
     font-weight: 700;
 }
 /*===========================================================================================================*\
@@ -400,4 +416,36 @@ body {
     font-size: 15px;
     line-height: 18px;
     font-weight: 400;
+}
+/*=================================================*\
+#AddPostPage/EditPostPage
+\*=================================================*/
+.add-post {
+    width: 600px;
+    padding: 20px;
+    border-radius: 20px;
+    background: #DDF2FD;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.add-post .btns-wrapper {
+    justify-content: center !important;
+}
+
+.add-post__item input,
+.add-post__item textarea {
+    padding: 5px 10px;
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    border: 2px solid #9BBEC8;
+}
+
+.add-post__item textarea {
+    min-height: 100px;
+    overflow: hidden;
 }
