@@ -17,7 +17,7 @@ app.use(express.json()); //для  того щоб express розумів що �
 
 //routes http://localhost:8080/
 app.use('/api/auth', authRoute);
-app.use('api/posts', postsRoute);
+app.use('/api/posts', postsRoute);
 
 async function start() {
     try {

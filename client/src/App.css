@@ -429,11 +429,15 @@ textarea {
     flex-direction: column;
     gap: 10px;
     text-align: center;
-    margin: 0 auto;
+    margin: 0 auto 50px;
 }
 
 .add-post .btns-wrapper {
     justify-content: center !important;
+}
+
+.add-post__item-img {
+    width: 100%;
 }
 
 .add-post__item input,
