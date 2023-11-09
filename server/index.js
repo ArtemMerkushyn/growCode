@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import cors from 'cors';
 
 import authRoute from './routes/auth.js';
+import postsRoute from './routes/posts.js';
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(express.json()); //для  того щоб express розумів що �
 
 //routes http://localhost:8080/
 app.use('/api/auth', authRoute);
+app.use('api/posts', postsRoute);
 
 async function start() {
     try {
