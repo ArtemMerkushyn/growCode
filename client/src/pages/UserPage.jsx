@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import axios from '../utils/axios.js';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { BsIncognito } from "react-icons/bs";
 import TextareaAutosize from 'react-textarea-autosize';
 import { AiOutlineSetting, AiFillChrome } from "react-icons/ai";
@@ -8,25 +7,21 @@ import { BiLogoReact } from "react-icons/bi";
 import { LiaNode } from "react-icons/lia";
 import { Link } from 'react-router-dom';
 import { UserPostsItem } from '../components/UserPostItem';
+import { getUserPosts } from '../redux/features/post/postSlice.js';
 
 export const UserPage = () => {
     const user = useSelector((state) => state.auth.user);
-    const [ posts, setPosts ] = useState([]);
+    const posts = useSelector((state) => state.post.posts);
+    const loading = useSelector((state) => state.post.loading);
 
-    const fetchMyPosts = async () => {
-        try {
-            const { data } = await axios.get('/posts/user/me');
-            // сортую пости по часу створення в зворотньому порядку
-            const sortedPosts = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-            setPosts(sortedPosts);
-        } catch (error) {
-            console.log(error);
-        }
-    }
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        fetchMyPosts();
-     }, []);
+        dispatch(getUserPosts());
+    }, [dispatch]);
+
+    //сортую поти по даті(нові будуть вище)
+    const sortedPosts = [...posts].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
     const getProfessionIcon = (profession) => {
         switch (profession) {
@@ -40,7 +35,10 @@ export const UserPage = () => {
                 return <BsIncognito />;
         }
     };
-    
+
+    if (loading) {
+        return <div>Загрузка...</div>;
+    }
     return (
         <div className='userpage'>
             {user ? (
@@ -71,8 +69,7 @@ export const UserPage = () => {
                                 ) : (
                                     <p>Інформація про сторінку користувача відсутня</p>
                                 )
-                            }
-                              
+                            }  
                         </div>
                     </div>
                 </div>
@@ -83,7 +80,7 @@ export const UserPage = () => {
                     <Link to={'/add/posts'}><div className='add'></div></Link>
                 </div>
                 <div className="userpage__posts-container">
-                    {posts?.map((post, idx) => {
+                    {sortedPosts?.map((post, idx) => {
                         return <UserPostsItem post={post} key={idx}/>
                     })}
                 </div>

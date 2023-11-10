@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, {  useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import TextareaAutosize from 'react-textarea-autosize';
 import { createPost } from '../redux/features/post/postSlice.js';
+import { toast } from 'react-toastify';
 
 export const AddPostsPage = () => {
     const [ imgUrl, setImgUrl] = useState('');
@@ -12,10 +13,12 @@ export const AddPostsPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const submitHandler = () => {
+    const submitHandler = async () => {
         try {
-            dispatch(createPost({ imgUrl, title, text }));
-            navigate('/me');
+            await dispatch(createPost({ imgUrl, title, text }));
+            if(!title || !text) {
+                toast('Поля заголовку і тексту не можуть бути порожніми');
+            } else navigate('/me');
         } catch (error) {
             console.log(error);
         }

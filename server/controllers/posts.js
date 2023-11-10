@@ -4,10 +4,6 @@ import User from '../models/User.js';
 export const createPost = async (req, res) => {
     try {
         const { imgUrl, title, text } = req.body;
-        // Проверка на пустые значения title и text
-        if (!title || !text) {
-            return res.json({ message: 'Поля заголовку і тексту не можуть бути порожніми' });
-        }
         const user = await User.findById(req.userId);
 
         const newPost = new Post({

@@ -9,10 +9,10 @@ export const register = async(req, res) => {
         const { username, password } = req.body;
 
         // Функція для перевірки мінімальної кількості символів у текстовому полі
-        /*const isLengthValid = (value, minLength) => value.length >= minLength;
-        if(isLengthValid(username, 5) || !isLengthValid(password, 5)) {
+        const isLengthValid = (value, minLength) => value.length >= minLength;
+        if(!isLengthValid(username, 5) || !isLengthValid(password, 5)) {
             return res.json({ message: 'Ім\'я користувача та пароль повинні містити щонайменше 5 символів.' })
-        }*/
+        }
         const isUsed = await User.findOne({ username });
         if(isUsed) {
             return res.json({ message: 'Даний username вже зайнятий.' });

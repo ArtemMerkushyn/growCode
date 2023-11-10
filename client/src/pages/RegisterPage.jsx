@@ -12,11 +12,6 @@ export const RegisterPage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        if(status) toast(status);
-        if(isAuth) navigate('/');
-    }, [status]);
-
     const handleSubmit = () => {
         try {
             dispatch(registerUser({ username, password }));
@@ -26,6 +21,14 @@ export const RegisterPage = () => {
             console.log(error);
         }
     }
+
+    useEffect(() => {
+        if(status) toast(status);
+        if(isAuth) {
+            navigate('/me');
+            window.location.reload();
+        }
+    }, [status, isAuth, navigate]);
 
     return (
         <form className='form' onSubmit={(e) => e.preventDefault()}>
