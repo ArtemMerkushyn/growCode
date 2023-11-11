@@ -1,5 +1,6 @@
 import Post from '../models/Post.js';
 import User from '../models/User.js';
+
 // create post
 export const createPost = async (req, res) => {
     try {
@@ -68,5 +69,20 @@ export const updatePost = async (req, res) => {
         res.json({ post, message: 'Ви успішно оновили Вашу публікацію' });
     } catch (error) {
         res.json({ message: `Щось пішло не так. ${error}` });
+    }
+}
+
+export const getAllPosts = async (req, res) => {
+    try {
+        const posts = await Post.find().sort('-createdAt');
+        const popularPosts = await Post.find().sort('-views');
+
+        if(!posts) {
+            return res.json({ message: 'Постів немає.' });
+        }
+
+        res.json({ posts, popularPosts });
+    } catch (error) {
+        res.json({ message: 'Щось пішло не так.' });
     }
 }
