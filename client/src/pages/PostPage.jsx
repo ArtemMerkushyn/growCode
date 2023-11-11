@@ -63,7 +63,7 @@ export const PostPage = () => {
                             )}
                         </div>
                         <div className='userpage__info-username'>
-                            {user ? (<div>{user.username}</div>):(<div>загрузка</div>)}
+                            {post ? (<div>{post.username}</div>):(<div>загрузка</div>)}
                         </div>
                     </div>
                     <div className="post-item__date">

@@ -24,8 +24,8 @@ export const createPost = createAsyncThunk(
     },
 );
 
-export const getUserPosts = createAsyncThunk(
-    'post/getUserPosts',
+export const getMyPosts = createAsyncThunk(
+    'post/getMyPosts',
     async () => {
         try {
             const { data } = await axios.get('/posts/user/me');
@@ -79,16 +79,28 @@ export const postSlice = createSlice({
             state.loading = false;
             state.status = action.payload.message;
         },
-        // get user posts
-        [getUserPosts.pending]: (state) => {
+        // receiving all posts
+        [getAllPosts.pending]: (state) => {
             state.loading = true;
         },
-        [getUserPosts.fulfilled]: (state, action) => {
+        [getAllPosts.fulfilled]: (state, action) => {
+            state.loading = false;
+            state.posts = action.payload.posts;
+            state.popularPosts = action.payload.popularPosts;
+        },
+        [getAllPosts.rejected]: (state) => {
+            state.loading = false;
+        },
+        // get user posts
+        [getMyPosts.pending]: (state) => {
+            state.loading = true;
+        },
+        [getMyPosts.fulfilled]: (state, action) => {
             state.loading = false;
             state.posts = action.payload;
             //state.popularPosts = action.payload.popularPosts;
         },
-        [getUserPosts.rejected]: (state) => {
+        [getMyPosts.rejected]: (state) => {
             state.loading = false;
         },
         // update post
@@ -105,18 +117,6 @@ export const postSlice = createSlice({
             }
         },
         [updatePost.rejected]: (state) => {
-            state.loading = false;
-        },
-        // receiving all posts
-        [getAllPosts.pending]: (state) => {
-            state.loading = true;
-        },
-        [getAllPosts.fulfilled]: (state, action) => {
-            state.loading = false;
-            state.posts = action.payload.posts;
-            state.popularPosts = action.payload.popularPosts;
-        },
-        [getAllPosts.rejected]: (state) => {
             state.loading = false;
         },
     },

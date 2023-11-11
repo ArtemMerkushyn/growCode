@@ -87,7 +87,7 @@ export const login = async (req, res) => {
     }
 }
 
-// get user
+// get me
 export const getMe = async (req, res) => {
     try {
         const user = await User.findById(req.userId);

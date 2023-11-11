@@ -1,9 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from '../utils/axios.js';
 import TextareaAutosize from 'react-textarea-autosize';
-import { toast } from 'react-toastify';
 import { updatePost } from '../redux/features/post/postSlice.js';
 
 export const PostPageEdit = () => {

@@ -7,7 +7,7 @@ import { BiLogoReact } from "react-icons/bi";
 import { LiaNode } from "react-icons/lia";
 import { Link } from 'react-router-dom';
 import { UserPostsItem } from '../components/UserPostItem.jsx';
-import { getUserPosts } from '../redux/features/post/postSlice.js';
+import { getMyPosts } from '../redux/features/post/postSlice.js';
 
 export const MyPage = () => {
     const user = useSelector((state) => state.auth.user);
@@ -17,7 +17,7 @@ export const MyPage = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getUserPosts());
+        dispatch(getMyPosts());
     }, [dispatch]);
 
     //сортую поти по даті(нові будуть вище)
