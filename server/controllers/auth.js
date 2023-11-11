@@ -50,8 +50,15 @@ export const register = async(req, res) => {
 export const login = async (req, res) => {
     try {
         const { username, password } = req.body;
-        const user = await User.findOne({ username });
+        if(!username || !password) return res.json({ message: 'Поля ім\'я користувача і пароль не можуть бути порожніми'});
+        
+        // Функція для перевірки мінімальної кількості символів у текстовому полі
+        const isLengthValid = (value, minLength) => value.length >= minLength;
+        if(!isLengthValid(username, 5) || !isLengthValid(password, 5)) {
+            return res.json({ message: 'Ім\'я користувача та пароль повинні містити щонайменше 5 символів.' })
+        }
 
+        const user = await User.findOne({ username });
         if(!user) {
             return res.json({ message: 'Такого користувача немає.' });
         }

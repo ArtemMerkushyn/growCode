@@ -19,6 +19,7 @@ export const LoginPage = () => {
 
     const handleSubmit = () => {
         try {
+            
             dispatch(loginUser({ username, password }));
         } catch (error) {
             console.log(error);
