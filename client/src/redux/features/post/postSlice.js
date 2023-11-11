@@ -36,6 +36,18 @@ export const getUserPosts = createAsyncThunk(
     }
 );
 
+export const updatePost = createAsyncThunk(
+    'post/updatePost',
+    async ({ id, updatedPost  }) => {
+        try {
+            const { data } = await axios.put(`/posts/${id}`, updatedPost);
+            return data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+);
+
 export const postSlice = createSlice({
     name: 'post',
     initialState,
@@ -65,6 +77,23 @@ export const postSlice = createSlice({
             //state.popularPosts = action.payload.popularPosts;
         },
         [getUserPosts.rejected]: (state) => {
+            state.loading = false;
+        },
+        // update post
+        [updatePost.pending]: (state) => {
+            state.loading = true;
+        },
+        [updatePost.fulfilled]: (state, action) => {
+            state.loading = false;
+            const index = state.posts.findIndex(post => post.id === action.payload.id);
+            if (index !== -1) {
+                state.posts[index].imgUrl = action.payload.imgUrl;
+                state.posts[index].title = action.payload.title;
+                state.posts[index].text = action.payload.text;
+            }
+        },
+
+        [updatePost.rejected]: (state) => {
             state.loading = false;
         },
     },
