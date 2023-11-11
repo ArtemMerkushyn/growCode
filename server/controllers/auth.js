@@ -3,6 +3,17 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { secred } from '../index.js';
 
+
+export const getAllUsers = async (req, res) => {
+    try {
+        const users = await User.find();
+        if(!users) return res.json({message: 'Жодних користувачів не знайдено.'});
+        return res.json({users});
+    } catch (error) {
+        res.json({ message: 'Немає доступу.'});
+    }
+}
+
 //register user
 export const register = async(req, res) => {
     try {
