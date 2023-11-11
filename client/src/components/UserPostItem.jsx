@@ -27,7 +27,7 @@ export const UserPostsItem = ({ post }) => {
     };
     return (
         <div className='post-item'>
-            <Link>
+            <Link to={`/${post._id}`}>
                 <div className="post-item__img">
                     {post.imgUrl ? (
                         <img src={post.imgUrl} alt="img"/>
@@ -51,10 +51,10 @@ export const UserPostsItem = ({ post }) => {
                     <Moment date={post.createdAt} format='DD.MM.YY HH:mm'/>
                 </div>
             </div>
-            <Link>
+            <Link to={`/${post._id}`}>
                 <div className=" post-item__title title-post">{post.title}</div>
             </Link>
-            <Link>
+            <Link to={`/${post._id}`}>
                 <div className="post-item__text cropped"> 
                     <TextareaAutosize
                         disabled 

@@ -10,6 +10,7 @@ import { Projects } from './pages/Projects.jsx';
 import { UserPage } from './pages/UserPage.jsx';
 import { UserPageEdit } from './pages/UserPageEdit.jsx';
 import { AddPostsPage } from './pages/AddPostsPage.jsx';
+import { PostPage } from './pages/PostPage.jsx';
 
 export const router = createBrowserRouter([
     {
@@ -43,6 +44,10 @@ export const router = createBrowserRouter([
             {
                 path: 'add/posts',
                 element: <AddPostsPage/>
+            },
+            {
+                path: ':id',
+                element: <PostPage/>
             },
             {
                 path: 'forum',
