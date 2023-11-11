@@ -55,7 +55,7 @@ export const getPostById = async (req, res) => {
 }
 
 // update post
-export const updatePost = async () => {
+export const updatePost = async (req, res) => {
     try {
         const { imgUrl, title, text, id } = req.body;
         const post = await Post.findById(id);

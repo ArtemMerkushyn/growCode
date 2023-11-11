@@ -71,7 +71,7 @@ export const PostPage = () => {
                     </div>
                 </div>
                 <div className=" post-item__title title-post">{post.title}</div>
-                <div className="post-item__text cropped"> 
+                <div className="post-item__text"> 
                     <TextareaAutosize
                         disabled 
                         spellCheck={false}
