@@ -53,3 +53,20 @@ export const getPostById = async (req, res) => {
         res.json({ message: 'Щось пішло не так.' });
     }
 }
+
+// update post
+export const updatePost = async () => {
+    try {
+        const { imgUrl, title, text, id } = req.body;
+        const post = await Post.findById(id);
+
+        post.imgUrl = imgUrl;
+        post.title = title;
+        post.text = text;
+
+        await post.save();
+        res.json({ post, message: 'Ви успішно оновили Вашу публікацію' });
+    } catch (error) {
+        res.json({ message: `Щось пішло не так. ${error}` });
+    }
+}

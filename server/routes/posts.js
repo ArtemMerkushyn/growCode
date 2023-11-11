@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { checkAuth } from '../utils/checkAuth.js';
-import { createPost, getMyPosts, getPostById,  } from '../controllers/posts.js';
+import { createPost, getMyPosts, getPostById, updatePost } from '../controllers/posts.js';
 
 const router = Router();
 
@@ -15,5 +15,9 @@ router.get('/user/me', checkAuth, getMyPosts);
 // get post by id
 // http://localhost:3002/api/posts/:id
 router.get('/:id', getPostById);
+
+// update post
+// http://localhost:3002/api/posts/:id
+router.put('/:id', checkAuth, updatePost);
 
 export default router;
