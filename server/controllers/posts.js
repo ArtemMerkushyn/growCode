@@ -38,4 +38,18 @@ export const getMyPosts = async (req, res) => {
     } catch (error) {
        res.json({ message: 'Щось пішло не так.' });
     }
- }
+}
+
+//get post by id
+export const getPostById = async (req, res) => {
+    try {
+        const post = await Post.findByIdAndUpdate(req.params.id, {
+            $inc: { views: 1 },
+         },
+         { new: true });
+   
+         res.json(post);
+    } catch (error) {
+        res.json({ message: 'Щось пішло не так.' });
+    }
+}
