@@ -6,10 +6,10 @@ import { AiOutlineSetting, AiFillChrome } from "react-icons/ai";
 import { BiLogoReact } from "react-icons/bi";
 import { LiaNode } from "react-icons/lia";
 import { Link } from 'react-router-dom';
-import { UserPostsItem } from '../components/UserPostItem';
+import { UserPostsItem } from '../components/UserPostItem.jsx';
 import { getUserPosts } from '../redux/features/post/postSlice.js';
 
-export const UserPage = () => {
+export const MyPage = () => {
     const user = useSelector((state) => state.auth.user);
     const posts = useSelector((state) => state.post.posts);
     const loading = useSelector((state) => state.post.loading);

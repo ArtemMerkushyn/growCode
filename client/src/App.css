@@ -507,7 +507,7 @@ textarea {
     font-weight: 400;
 }
 /*=================================================*\
-#AddPostPage/EditPostPage
+#AddPostPage/EditPostPage/PostPage
 \*=================================================*/
 .add-post {
     width: 600px;
@@ -542,4 +542,19 @@ textarea {
 .add-post__item textarea {
     min-height: 100px;
     overflow: hidden;
+}
+/*=======================================================*/
+.post-page {
+    display: flex;
+    gap: 10px;
+}
+
+.post-page .post-item {
+    width: 60%;
+}
+.popular-posts {
+    padding-left: 10px;
+    width: 40%;
+    min-height: 100vh;
+    border-left: 1px solid #002F34;
 }

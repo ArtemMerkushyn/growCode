@@ -7,7 +7,7 @@ import { Blog } from './pages/Blog.jsx';
 import { Forum } from './pages/Forum.jsx';
 import { Vacancies } from './pages/Vacancies.jsx';
 import { Projects } from './pages/Projects.jsx';
-import { UserPage } from './pages/UserPage.jsx';
+import { MyPage } from './pages/MyPage.jsx';
 import { UserPageEdit } from './pages/UserPageEdit.jsx';
 import { AddPostsPage } from './pages/AddPostsPage.jsx';
 import { PostPage } from './pages/PostPage.jsx';
@@ -31,7 +31,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'me',
-                element: <UserPage/>
+                element: <MyPage/>
             },
             {
                 path: ':id/edit/user',
