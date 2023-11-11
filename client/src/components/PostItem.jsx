@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Moment from 'react-moment';
 import { AiFillEye, AiOutlineMessage } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
@@ -9,6 +9,9 @@ import { LiaNode } from "react-icons/lia";
 import { BsIncognito } from "react-icons/bs";
 
 export const PostItem = ({ post }) => {
+    const [ userById, setUserById ] = useState('')
+    //setUserById(post.author);
+    
     const getProfessionIcon = (profession) => {
         switch (profession) {
             case 'front-end developer':
@@ -33,8 +36,8 @@ export const PostItem = ({ post }) => {
             <div className="post-item__info">
                 <div className="post-item__info-username">
                     <div className='userpage__info-avatar'>
-                        {post.user && post.user.profession ? (
-                            getProfessionIcon(post.user.profession)
+                        {post.profession ? (
+                            getProfessionIcon(post.profession)
                         ) : (
                             <BsIncognito />
                         )}

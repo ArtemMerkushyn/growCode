@@ -56,8 +56,8 @@ export const PostPage = () => {
                 <div className="post-item__info">
                     <div className="post-item__info-username">
                         <div className='userpage__info-avatar'>
-                            {user && user.profession ? (
-                                getProfessionIcon(user.profession)
+                            {post && post.profession ? (
+                                getProfessionIcon(post.profession)
                             ) : (
                                 <BsIncognito />
                             )}

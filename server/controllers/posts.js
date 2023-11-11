@@ -9,6 +9,7 @@ export const createPost = async (req, res) => {
 
         const newPost = new Post({
             username: user.username,
+            profession: user.profession,
             imgUrl,
             title,
             text,

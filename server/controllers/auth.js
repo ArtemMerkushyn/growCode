@@ -2,17 +2,7 @@ import User from '../models/User.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { secred } from '../index.js';
-
-
-export const getAllUsers = async (req, res) => {
-    try {
-        const users = await User.find();
-        if(!users) return res.json({message: 'Жодних користувачів не знайдено.'});
-        return res.json({users});
-    } catch (error) {
-        res.json({ message: 'Немає доступу.'});
-    }
-}
+import Post from '../models/Post.js';
 
 //register user
 export const register = async(req, res) => {
@@ -137,6 +127,11 @@ export const updateUser = async (req, res) => {
         user.profession = profession;
         user.level = level;
         user.description = description;
+
+        await Post.updateMany(
+            { 'author': req.userId },
+            { $set: { 'profession': profession }}
+        );
 
         await user.save();
         res.json({ user, message: 'Ви успішно оновили дані Вашої сторінки.' });
