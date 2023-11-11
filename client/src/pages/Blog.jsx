@@ -35,11 +35,14 @@ export const Blog = () => {
                         <option value="popular">Найпопулярніші</option>
                     </select>
                 </div>
-                <div className="main-page__posts">
+                <div className="blog-page__posts">
                 {sortedPosts.map((post, idx) => (
                     <PostItem key={idx} post={post} />
                 ))}
                 </div>
+            </div>
+            <div className="blog-page__comments">
+                <h3 className='title1'>Коментарі</h3>
             </div>
         </div>
     );

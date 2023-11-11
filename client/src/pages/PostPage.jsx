@@ -9,8 +9,10 @@ import { BiLogoReact } from "react-icons/bi";
 import { LiaNode } from "react-icons/lia";
 import { BsIncognito } from "react-icons/bs";
 import { useSelector } from 'react-redux';
+import { PostItem } from '../components/PostItem.jsx';
 
 export const PostPage = () => {
+    const { popularPosts } = useSelector((state) => state.post);
     const [post, setPost] = useState(null);
     const { user } = useSelector((state) => state.auth);
     const params = useParams();
@@ -99,6 +101,9 @@ export const PostPage = () => {
             </div>
             <div className="popular-posts">
                 <h3 className="title1">Популярні пости</h3>
+                {popularPosts.map((post, idx) => (
+                    <PostItem key={idx} post={post} />
+                ))}
             </div>
         </div>
     );

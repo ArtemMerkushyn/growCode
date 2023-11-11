@@ -311,6 +311,7 @@ textarea {
     position: relative;
     z-index: -1;
 }
+
 .post-item__counter {
     display: flex;
     gap: 10px;
@@ -442,6 +443,11 @@ textarea {
     overflow: hidden;
 }
 
+.userpage-container {
+    display: flex;
+    gap: 20px;
+}
+
 .userpage__posts {
     width: 60%;
 }
@@ -459,6 +465,17 @@ textarea {
     display: flex;
     align-items: center;
     gap: 5px;
+    margin-bottom: 10px;
+}
+
+.userpage__questions {
+    width: 40%;
+}
+
+.userpage__questions h3 {
+    height: 30px;
+    display: flex;
+    align-items: center;
     margin-bottom: 10px;
 }
 /*=======================================================*/
@@ -563,10 +580,49 @@ textarea {
     width: 40%;
     min-height: 100vh;
     border-left: 1px solid #002F34;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.popular-posts .post-item {
+    width: 100%;
 }
 /*=================================================*\
 #Blog-page
 \*=================================================*/
 .blog-page {
     display: flex;
+    gap: 20px;
+}
+
+.blog-page__container {
+    width: 60%;
+}
+
+.blog-page__sort select {
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    padding: 5px;
+    border: 2px solid #427D9D;
+    margin-bottom: 20px;
+}
+
+.blog-page__posts {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.blog-page__comments {
+    width: 40%;
+}
+
+.blog-page__comments h3 {
+    height: 33px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
 }

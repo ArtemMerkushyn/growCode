@@ -74,15 +74,21 @@ export const MyPage = () => {
                     </div>
                 </div>
             ) : (<div>Загрузка</div>)}
-            <div className="userpage__posts">
-                <div className="userpage__posts-header">
-                    <h3 className='title1'>Мої пости</h3>
-                    <Link to={'/add/posts'}><div className='add'></div></Link>
+
+            <div className="userpage-container">
+                <div className="userpage__posts">
+                    <div className="userpage__posts-header">
+                        <h3 className='title1'>Мої пости</h3>
+                        <Link to={'/add/posts'}><div className='add'></div></Link>
+                    </div>
+                    <div className="userpage__posts-container">
+                        {sortedPosts?.map((post, idx) => {
+                            return <UserPostsItem post={post} key={idx}/>
+                        })}
+                    </div>
                 </div>
-                <div className="userpage__posts-container">
-                    {sortedPosts?.map((post, idx) => {
-                        return <UserPostsItem post={post} key={idx}/>
-                    })}
+                <div className="userpage__questions">
+                    <h3 className='title1'>Мої питання</h3>
                 </div>
             </div>
         </div>
