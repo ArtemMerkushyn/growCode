@@ -552,6 +552,12 @@ textarea {
 .post-page .post-item {
     width: 60%;
 }
+
+.post-item__action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 .popular-posts {
     padding-left: 10px;
     width: 40%;

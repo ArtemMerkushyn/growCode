@@ -11,6 +11,7 @@ import { MyPage } from './pages/MyPage.jsx';
 import { UserPageEdit } from './pages/UserPageEdit.jsx';
 import { AddPostsPage } from './pages/AddPostsPage.jsx';
 import { PostPage } from './pages/PostPage.jsx';
+import { PostPageEdit } from './pages/PostPageEdit.jsx';
 
 export const router = createBrowserRouter([
     {
@@ -48,6 +49,10 @@ export const router = createBrowserRouter([
             {
                 path: ':id',
                 element: <PostPage/>
+            },
+            {
+                path: ':id/edit',
+                element: <PostPageEdit/>
             },
             {
                 path: 'forum',

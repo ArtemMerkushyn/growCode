@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import axios from '../utils/axios.js';
 import Moment from 'react-moment';
 import TextareaAutosize from 'react-textarea-autosize';
@@ -48,13 +48,11 @@ export const PostPage = () => {
     return (
         <div className='post-page'>
             <div className='post-item'>
-                <Link to={`/${post._id}`}>
-                    <div className="post-item__img">
-                        {post.imgUrl ? (
-                            <img src={post.imgUrl} alt="img"/>
-                        ) : null}
-                    </div> 
-                </Link>
+                <div className="post-item__img">
+                    {post.imgUrl ? (
+                        <img src={post.imgUrl} alt="img"/>
+                    ) : null}
+                </div> 
                 <div className="post-item__info">
                     <div className="post-item__info-username">
                         <div className='userpage__info-avatar'>
@@ -72,26 +70,31 @@ export const PostPage = () => {
                         <Moment date={post.createdAt} format='DD.MM.YY HH:mm'/>
                     </div>
                 </div>
-                <Link to={`/${post._id}`}>
-                    <div className=" post-item__title title-post">{post.title}</div>
-                </Link>
-                <Link to={`/${post._id}`}>
-                    <div className="post-item__text cropped"> 
-                        <TextareaAutosize
-                            disabled 
-                            spellCheck={false}
-                            value={post.text}
-                        />
+                <div className=" post-item__title title-post">{post.title}</div>
+                <div className="post-item__text cropped"> 
+                    <TextareaAutosize
+                        disabled 
+                        spellCheck={false}
+                        value={post.text}
+                    />
+                </div>
+                <div className="post-item__action">
+                    <div className='post-item__counter'>
+                        <button className='post-item__counter-btn'>
+                            <AiFillEye/><span>{post.views}</span>
+                        </button>
+                        <button className='post-item__counter-btn'>
+                            <AiOutlineMessage />{' '}
+                            <span>{post.comments?.length || 0} </span>
+                        </button>
                     </div>
-                </Link>
-                <div className='post-item__counter'>
-                    <button className='post-item__counter-btn'>
-                        <AiFillEye/><span>{post.views}</span>
-                    </button>
-                    <button className='post-item__counter-btn'>
-                        <AiOutlineMessage />{' '}
-                        <span>{post.comments?.length || 0} </span>
-                    </button>
+                    {user?._id === post.author && (
+                        <div className="post-item__action-btns">
+                            <Link to={`/${params.id}/edit`}>
+                                <div className='link'>Редагувати</div>
+                            </Link>
+                        </div>
+                    )}
                 </div>
             </div>
             <div className="popular-posts">
