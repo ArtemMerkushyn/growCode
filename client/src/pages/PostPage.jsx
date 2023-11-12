@@ -12,8 +12,8 @@ import { useSelector } from 'react-redux';
 import { PostItem } from '../components/PostItem.jsx';
 
 export const PostPage = () => {
-    const { popularPosts } = useSelector((state) => state.post);
     const [post, setPost] = useState(null);
+    const [ popularPosts, setPopularPosts ] = useState([]);
     const { user } = useSelector((state) => state.auth);
     const params = useParams();
 
@@ -25,6 +25,15 @@ export const PostPage = () => {
     useEffect(() => {
         fetchPost();
     }, [fetchPost]);
+
+    const fetchPosts = useCallback(async () => {
+        const { data } = await axios.get('/posts');
+        setPopularPosts(data.popularPosts);
+    }, []);
+
+    useEffect(() => {
+        fetchPosts();
+    }, [fetchPosts])
 
     const getProfessionIcon = (profession) => {
         switch (profession) {
