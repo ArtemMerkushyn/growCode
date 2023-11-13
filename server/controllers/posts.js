@@ -42,6 +42,26 @@ export const getMyPosts = async (req, res) => {
     }
 }
 
+// get user posts
+export const getUserPosts = async (req, res) => {
+    const idUser = req.params.id;
+    try {
+        const user = await User.findById(idUser);
+        if(!user) return res.json({ message: 'Даного користувача не знайдено.'});
+
+        const list = await Promise.all(
+            user.posts.map((post) => {
+                return Post.findById(post._id);
+            })
+        );
+
+        res.json({ user, list });
+    } catch (error) {
+        res.json({ message: `Щось пішло не так. ${error}` });
+    }
+}
+
+
 //get post by id
 export const getPostById = async (req, res) => {
     try {

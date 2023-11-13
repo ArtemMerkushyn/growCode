@@ -12,6 +12,7 @@ import { UserPageEdit } from './pages/UserPageEdit.jsx';
 import { AddPostsPage } from './pages/AddPostsPage.jsx';
 import { PostPage } from './pages/PostPage.jsx';
 import { PostPageEdit } from './pages/PostPageEdit.jsx';
+import { UserPage } from './pages/UserPage.jsx';
 
 export const router = createBrowserRouter([
     {
@@ -33,6 +34,10 @@ export const router = createBrowserRouter([
             {
                 path: 'me',
                 element: <MyPage/>
+            },
+            {
+                path: 'user/:id',
+                element: <UserPage/>
             },
             {
                 path: ':id/edit/user',

@@ -41,7 +41,9 @@ export const PostItem = ({ post }) => {
                         )}
                     </div>
                     <div className='userpage__info-username'>
-                        {post ? (<div>{post.username}</div>):(<div>загрузка</div>)}
+                        <Link to={`/user/${post.author}`}>
+                            {post ? (<div>{post.username}</div>):(<div>загрузка</div>)}
+                        </Link>
                     </div>
                 </div>
                 <div className="post-item__date">
