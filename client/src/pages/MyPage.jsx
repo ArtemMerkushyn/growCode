@@ -6,8 +6,8 @@ import { AiOutlineSetting, AiFillChrome } from "react-icons/ai";
 import { BiLogoReact } from "react-icons/bi";
 import { LiaNode } from "react-icons/lia";
 import { Link } from 'react-router-dom';
-import { UserPostsItem } from '../components/UserPostItem.jsx';
 import { getMyPosts } from '../redux/features/post/postSlice.js';
+import { MyPostItem } from '../components/MyPostItem.jsx';
 
 export const MyPage = () => {
     const user = useSelector((state) => state.auth.user);
@@ -83,7 +83,7 @@ export const MyPage = () => {
                     </div>
                     <div className="userpage__posts-container">
                         {sortedPosts?.map((post, idx) => {
-                            return <UserPostsItem post={post} key={idx}/>
+                            return <MyPostItem post={post} key={idx}/>
                         })}
                     </div>
                 </div>
