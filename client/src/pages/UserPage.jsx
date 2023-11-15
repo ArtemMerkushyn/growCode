@@ -7,7 +7,7 @@ import {  AiFillChrome } from "react-icons/ai";
 import { BiLogoReact } from "react-icons/bi";
 import { LiaNode } from "react-icons/lia";
 import { BsIncognito } from "react-icons/bs";
-import { UserPostsItem } from '../components/UserPostItem';
+import { UserPostsItem } from '../components/UserPostItem.jsx';
 
 export const UserPage = () => {
     const [userInfo, setUserInfo ] = useState(null);
@@ -82,7 +82,7 @@ export const UserPage = () => {
                     </div>
                     <div className="userpage__posts-container">
                         {posts?.map((post, idx) => {
-                            return <PostItem post={post} key={idx}/>
+                            return <UserPostsItem post={post} key={idx}/>
                         })}
                     </div>
                 </div>

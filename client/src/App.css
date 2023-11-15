@@ -400,8 +400,8 @@ textarea {
     display: flex;
     align-items: center;
     gap: 5px;
-    font-size: 20px;
-    line-height: 24px;
+    font-size: 16px;
+    line-height: 22px;
     font-weight: 700;
 }
 
