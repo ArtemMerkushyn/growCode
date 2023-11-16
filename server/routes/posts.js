@@ -29,7 +29,7 @@ router.put('/:id', checkAuth, updatePost);
 router.get('/', getAllPosts);
 
 // get post comments
-// http://localhost:3002/api/posts/comments/:id
+// http://localhost:8080/api/posts/comments/:id
 router.get('/comments/:id', getPostComments);
 
 export default router;
