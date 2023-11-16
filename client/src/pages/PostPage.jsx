@@ -3,19 +3,23 @@ import { useParams, Link } from 'react-router-dom';
 import axios from '../utils/axios.js';
 import Moment from 'react-moment';
 import TextareaAutosize from 'react-textarea-autosize';
-import { AiFillEye, AiOutlineMessage } from 'react-icons/ai';
+import { AiFillEye, AiOutlineMessage, AiOutlineSend } from 'react-icons/ai';
 import { AiFillChrome } from "react-icons/ai";
 import { BiLogoReact } from "react-icons/bi";
 import { LiaNode } from "react-icons/lia";
 import { BsIncognito } from "react-icons/bs";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { PostItem } from '../components/PostItem.jsx';
+import { createComment } from '../redux/features/comment/commentSlice.js';
 
 export const PostPage = () => {
-    const [post, setPost] = useState(null);
+    const [ post, setPost ] = useState(null);
     const [ popularPosts, setPopularPosts ] = useState([]);
+    const [ comment, setComment ] = useState('');
     const { user } = useSelector((state) => state.auth);
     const params = useParams();
+    const dispatch = useDispatch();
 
     const fetchPost = useCallback(async () => {
         const { data } = await axios.get(`/posts/${params.id}`);
@@ -33,7 +37,24 @@ export const PostPage = () => {
 
     useEffect(() => {
         fetchPosts();
-    }, [fetchPosts])
+    }, [fetchPosts]);
+
+    const hamdleSubmit = () => {
+        try {
+            if(!user) {
+                setComment('');
+                return toast('Авторизуйтесь, щоб залишити ваш коментар');
+            }
+            if(!comment.trim()) {
+                return toast('Коментар не може бути пустим');
+            }
+            const postId = params.id;
+            dispatch(createComment({ postId, comment }));
+            toast('Дякуємо за твою думку');
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     const getProfessionIcon = (profession) => {
         switch (profession) {
@@ -107,6 +128,25 @@ export const PostPage = () => {
                         </div>
                     )}
                 </div>
+                <form 
+                    className='post-item__form' 
+                    onSubmit={(e) => e.preventDefault()}
+                >
+                    <label className='post-item__form-textarea'>
+                        <TextareaAutosize
+                            placeholder='Залиште ваш коментар'
+                            spellCheck={false}
+                            value={comment}
+                            onChange={(e) => setComment(e.target.value)}
+                        />
+                    </label>
+                    <button 
+                        className='post-item__form-btn'
+                        onClick={hamdleSubmit}
+                    >
+                        <AiOutlineSend />
+                    </button>
+                </form>
             </div>
             <div className="popular-posts">
                 <h3 className="title1">Популярні пости</h3>

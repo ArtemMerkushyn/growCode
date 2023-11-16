@@ -574,7 +574,52 @@ textarea {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 5px;
 }
+
+.post-item__form {
+    border-top: 1px solid #002F34;
+    display: flex;
+    gap: 10px;
+    min-height: 40px;
+    position: relative;
+}
+
+.post-item__form-textarea {
+    width: calc(100% - 40px);
+}
+
+.post-item__form-textarea textarea {
+    padding: 5px;
+    width: 100%;
+    min-height: 40px;
+}
+
+.post-item__form-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.post-item__form-btn svg {
+    width: 90%;
+    height: 90%;
+    fill: #002F34;
+    cursor: pointer;
+    transition: all .1s linear;
+}
+
+.post-item__form-btn svg:hover{
+    fill: #427D9D;
+}
+
 .popular-posts {
     padding-left: 10px;
     width: 40%;
