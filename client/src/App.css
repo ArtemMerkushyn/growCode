@@ -331,6 +331,52 @@ textarea {
     fill: #002F34;
 }
 /*===========================================================================================================*\
+#comment-item
+\*===========================================================================================================*/
+.comment__item {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment__item-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.comment__item-info a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.comment__item-info--avatar {
+    width: 30px;
+    height: 30px;
+    background: #427D9D;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.comment__item-info--avatar svg{
+    width: 70%;
+    height: 70%;
+    fill: #fff;
+}
+
+.comment__item-info--username {
+    font-weight: 700;
+}
+
+.comment__item-text {
+    padding-left: 35px;
+}
+
+.comment__item-text textarea {
+    width: 100%;
+}
+/*===========================================================================================================*\
 #pages
 \*===========================================================================================================*/
 /*=================================================*\

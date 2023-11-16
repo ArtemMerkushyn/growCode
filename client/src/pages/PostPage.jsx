@@ -11,12 +11,14 @@ import { BsIncognito } from "react-icons/bs";
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { PostItem } from '../components/PostItem.jsx';
-import { createComment } from '../redux/features/comment/commentSlice.js';
+import { createComment, getPostComments } from '../redux/features/comment/commentSlice.js';
+import { CommentItem } from '../components/CommentItem.jsx';
 
 export const PostPage = () => {
     const [ post, setPost ] = useState(null);
     const [ popularPosts, setPopularPosts ] = useState([]);
     const [ comment, setComment ] = useState('');
+    const { comments } = useSelector((state) => state.comment);
     const { user } = useSelector((state) => state.auth);
     const params = useParams();
     const dispatch = useDispatch();
@@ -29,6 +31,18 @@ export const PostPage = () => {
     useEffect(() => {
         fetchPost();
     }, [fetchPost]);
+
+    const fetchComments = useCallback(async () => {
+        try {
+          dispatch(getPostComments(params.id));
+        } catch (error) {
+          console.log(error);
+        }
+    }, [params.id, dispatch]);
+
+    useEffect(() => {
+        fetchComments();
+    }, [fetchComments]);
 
     const fetchPosts = useCallback(async () => {
         const { data } = await axios.get('/posts');
@@ -50,6 +64,7 @@ export const PostPage = () => {
             }
             const postId = params.id;
             dispatch(createComment({ postId, comment }));
+            setComment('');
             toast('Дякуємо за твою думку');
         } catch (error) {
             console.log(error)
@@ -147,6 +162,9 @@ export const PostPage = () => {
                         <AiOutlineSend />
                     </button>
                 </form>
+                {comments?.map((cmt) => (
+                    <CommentItem key={cmt._id} cmt={cmt} author={cmt.author}/>
+                ))}
             </div>
             <div className="popular-posts">
                 <h3 className="title1">Популярні пости</h3>

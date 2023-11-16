@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { secred } from '../index.js';
 import Post from '../models/Post.js';
+import Comment from '../models/Comment.js';
 
 //register user
 export const register = async(req, res) => {
@@ -130,7 +131,12 @@ export const updateUser = async (req, res) => {
 
         await Post.updateMany(
             { 'author': req.userId },
-            { $set: { 'profession': profession }}
+            { $set: { 'profession': profession }},
+        );
+
+        await Comment.updateMany(
+            { 'author': req.userId },
+            { $set: { 'profession': profession }},
         );
 
         await user.save();

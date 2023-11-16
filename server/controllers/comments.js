@@ -12,9 +12,10 @@ export const createComment = async (req, res) => {
         }
 
         const newComment = new Comment({ 
-            comment, 
+            author: req.userId,
             username: user.username,
-            author: req.userId
+            profession: user.profession,
+            comment
         });
         await newComment.save();
 

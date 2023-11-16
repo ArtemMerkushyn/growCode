@@ -2,14 +2,15 @@ import mongoose from 'mongoose';
 
 const CommentSchema = new mongoose.Schema(
     {
-        username: { type: String },
-        comment: {
-            type: String,
-            required: true
-        },
         author: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User'
+        },
+        username: { type: String },
+        profession: { type: String },
+        comment: {
+            type: String,
+            required: true
         },
     },
     { timestamps: true },
