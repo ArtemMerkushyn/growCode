@@ -32,3 +32,16 @@ export const createComment = async (req, res) => {
         res.json({ message: `Щось пішло нетак. ${error}` });
     }
 }
+
+export const getAllComments = async (req, res) => {
+    try {
+        const comments = await Comment.find().sort('-createdAt');
+        if(!comments) {
+            return res.json({ message: 'Коментарів немає.' });
+        }
+
+        res.json({ comments });
+    } catch (error) {
+        res.json({ message: 'Немає доступу' })
+    }
+}
