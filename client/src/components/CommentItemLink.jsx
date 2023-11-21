@@ -7,7 +7,7 @@ import { BiLogoReact } from "react-icons/bi";
 import { LiaNode } from "react-icons/lia";
 import { BsIncognito } from "react-icons/bs";
 
-export const CommentItem = ({ cmt }) => {
+export const CommentItemLink = ({ cmt }) => {
     const getProfessionIcon = (profession) => {
         switch (profession) {
             case 'front-end developer':
@@ -22,7 +22,7 @@ export const CommentItem = ({ cmt }) => {
     };
     return (
         <div className='comment'>
-            <div className="comment__item">
+            <Link className="comment__item all-comments" to={`/${cmt.post}`}>
                 <div className="comment__item-info">
                     <Link to={`/user/${cmt.author}`}>
                         <div className="comment__item-info--avatar">
@@ -41,7 +41,7 @@ export const CommentItem = ({ cmt }) => {
                 <div className="comment__item-text">
                     <TextareaAutosize disabled spellCheck={false} value={cmt.comment} />
                 </div>
-            </div>
+            </Link>
         </div>
     );
 }

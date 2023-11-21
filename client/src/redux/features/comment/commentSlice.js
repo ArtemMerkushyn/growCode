@@ -3,6 +3,7 @@ import axios from '../../../utils/axios.js';
 
 const initialState = {
     comments: [],
+    allComments: [],
     loading: false,
 }
 
@@ -62,7 +63,7 @@ export const commentSlice = createSlice(
             [createComment.rejected]: (state) => {
                 state.loading = false;
             },
-            // get comment
+            // get post comments
             [getPostComments.pending]: (state) => {
                 state.loading = true;
             },
@@ -79,7 +80,7 @@ export const commentSlice = createSlice(
             },
             [getAllComments.fulfilled]: (state, action) => {
                 state.loading = false;
-                state.comments = action.payload.comments;
+                state.allComments = action.payload.comments;
             },
             [getAllComments.rejected]: (state) => {
                 state.loading = false;

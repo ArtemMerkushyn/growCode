@@ -12,6 +12,7 @@ export const createComment = async (req, res) => {
         }
 
         const newComment = new Comment({ 
+            post: postId,
             author: req.userId,
             username: user.username,
             profession: user.profession,

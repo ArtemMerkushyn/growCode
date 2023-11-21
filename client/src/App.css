@@ -11,6 +11,11 @@ body {
     font-weight: 400;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
 input {
     outline: none;
 }
@@ -374,6 +379,8 @@ textarea {
 }
 
 .comment__item-text textarea {
+    position: relative;
+    z-index: -1;
     width: 100%;
 }
 /*===========================================================================================================*\
