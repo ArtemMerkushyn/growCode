@@ -4,9 +4,9 @@ import { getAllPosts } from '../redux/features/post/postSlice.js';
 import { PostItem } from '../components/PostItem.jsx';
 
 export const Blog = () => {
+    const { posts, popularPosts } = useSelector((state) => state.post);
     const [sortBy, setSortBy] = useState('date');
     const dispatch = useDispatch();
-    const { posts, popularPosts } = useSelector((state) => state.post);
 
     useEffect(() => {
         dispatch(getAllPosts());
