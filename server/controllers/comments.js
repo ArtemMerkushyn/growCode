@@ -37,14 +37,13 @@ export const createComment = async (req, res) => {
 //remove comment
 export const removeComment = async (req, res) => {
     try {
-        const { commentId, postId } = req.body;
-        const comment = await Comment.findById(commentId);
-        if(!comment) return res.json({ message: 'Такого коментаря не існує.' });
+        const comment = await Comment.findByIdAndDelete(req.params.id);
+        if(!comment) return res.json({ message: 'Такого коментаря не існує.'});
 
-        await Post.findByIdAndUpdate(req.postId, {
-            $pull: { comments: req.commentId },
+        await Post.findByIdAndUpdate(comment.post, {
+            $pull: { comments: req.params.id },
         });
-        res.json({ message: 'Ви успішно видалили коментар' });
+        res.json({ message: 'Ви успішно видалили коментар', comment});
     } catch (error) {
         res.json({ message: `Щось пішло не так${error}` });
     }

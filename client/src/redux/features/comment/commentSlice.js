@@ -24,9 +24,9 @@ export const createComment = createAsyncThunk(
 
 export const removeComment = createAsyncThunk(
     'comment/removePost',
-    async ({ commentId, postId }) => {
+    async ( {commentId} ) => {
         try {
-            const { data } = await axios.delete(`/comments/${commentId}`, commentId, postId);
+            const { data } = await axios.delete(`/comments/${commentId}`);
             return data;
         } catch (error) {
             console.log(error);
@@ -81,9 +81,9 @@ export const commentSlice = createSlice(
             },
             [removeComment.fulfilled]: (state, action) => {
                 state.loading = false;
-                state.comments = state.comments.filter(
-                    (comment) => comment._id !== action.payload._id,
-                );
+                const idToRemove = action.payload.comment._id;
+                state.comments = state.comments.filter(comment => comment._id !== idToRemove);
+                state.allComments = state.allComments.filter(comment => comment._id !== idToRemove);
             },
             [removeComment.rejected]: (state) => {
                 state.loading = false;

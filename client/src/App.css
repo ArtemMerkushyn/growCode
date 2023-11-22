@@ -29,6 +29,14 @@ textarea {
     border: none;
 }
 
+button.link {
+    text-transform: uppercase;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
 .container {
     max-width: 1024px;
     margin: 0 auto;
@@ -395,6 +403,11 @@ textarea {
     position: relative;
     z-index: -1;
     width: 100%;
+}
+
+.comment-action__wrapper {
+    display: flex;
+     margin-bottom: 5px;
 }
 /*===========================================================================================================*\
 #pages

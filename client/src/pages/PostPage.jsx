@@ -34,9 +34,9 @@ export const PostPage = () => {
 
     const fetchComments = useCallback(async () => {
         try {
-          dispatch(getPostComments(params.id));
+            dispatch(getPostComments(params.id));
         } catch (error) {
-          console.log(error);
+            console.log(error);
         }
     }, [params.id, dispatch]);
 
@@ -132,7 +132,7 @@ export const PostPage = () => {
                         </button>
                         <button className='post-item__counter-btn'>
                             <AiOutlineMessage />{' '}
-                            <span>{post.comments?.length || 0} </span>
+                            <span>{comments?.length || 0} </span>
                         </button>
                     </div>
                     {user?._id === post.author && (
@@ -162,8 +162,8 @@ export const PostPage = () => {
                         <AiOutlineSend />
                     </button>
                 </form>
-                {comments?.map((cmt) => (
-                    <CommentItem key={cmt._id} cmt={cmt} author={cmt.author}/>
+                {comments && comments.map(comment => (
+                    <CommentItem key={comment._id} cmt={comment} />
                 ))}
             </div>
             <div className="popular-posts">
