@@ -34,6 +34,23 @@ export const createComment = async (req, res) => {
     }
 }
 
+//remove comment
+export const removeComment = async (req, res) => {
+    try {
+        const { commentId, postId } = req.body;
+        const comment = await Comment.findById(commentId);
+        if(!comment) return res.json({ message: 'Такого коментаря не існує.' });
+
+        await Post.findByIdAndUpdate(req.postId, {
+            $pull: { comments: req.commentId },
+        });
+        res.json({ message: 'Ви успішно видалили коментар' });
+    } catch (error) {
+        res.json({ message: `Щось пішло не так${error}` });
+    }
+}
+
+//get all posts
 export const getAllComments = async (req, res) => {
     try {
         const comments = await Comment.find().sort('-createdAt');

@@ -19,7 +19,6 @@ export const PostPage = () => {
     const [ popularPosts, setPopularPosts ] = useState([]);
     const [ comment, setComment ] = useState('');
     const { comments } = useSelector((state) => state.comment);
-    console.log(comments)
     const { user } = useSelector((state) => state.auth);
     const params = useParams();
     const dispatch = useDispatch();
