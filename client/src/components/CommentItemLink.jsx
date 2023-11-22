@@ -21,10 +21,10 @@ export const CommentItemLink = ({ cmt }) => {
         }
     };
     return (
-        <div className='comment'>
+        <div className='comment hover'>
             <Link className="comment__item all-comments" to={`/${cmt.post}`}>
                 <div className="comment__item-info">
-                    <Link to={`/user/${cmt.author}`}>
+                    <div className="comment__item-info--wrapper">
                         <div className="comment__item-info--avatar">
                             {cmt && cmt.profession ? (
                                     getProfessionIcon(cmt.profession)
@@ -32,8 +32,8 @@ export const CommentItemLink = ({ cmt }) => {
                                     <BsIncognito />
                             )}
                         </div>
-                        <div className="comment__item-info--username link">{cmt.username}</div>
-                    </Link>
+                        <div className="comment__item-info--username">{cmt.username}</div>
+                    </div>
                     <div className="comment__item-info--date">
                         <Moment date={cmt.createdAt} format='DD.MM.YY HH:mm'/>
                     </div>
