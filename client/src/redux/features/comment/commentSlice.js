@@ -22,6 +22,18 @@ export const createComment = createAsyncThunk(
     }
 );
 
+export const removeComment = createAsyncThunk(
+    'comment/removePost',
+    async ({ commentId, postId }) => {
+        try {
+            const { data } = await axios.delete(`/comments/${commentId}`, commentId, postId);
+            return data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+);
+
 export const getPostComments = createAsyncThunk(
     'comment/getPostComments',
     async (postId) => {
@@ -61,6 +73,19 @@ export const commentSlice = createSlice(
                 state.comments.push(action.payload);
             },
             [createComment.rejected]: (state) => {
+                state.loading = false;
+            },
+            // remove comment
+            [removeComment.pending]: (state) => {
+                state.loading = true;
+            },
+            [removeComment.fulfilled]: (state, action) => {
+                state.loading = false;
+                state.comments = state.comments.filter(
+                    (comment) => comment._id !== action.payload._id,
+                );
+            },
+            [removeComment.rejected]: (state) => {
                 state.loading = false;
             },
             // get post comments

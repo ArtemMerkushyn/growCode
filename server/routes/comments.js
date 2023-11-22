@@ -9,7 +9,7 @@ const router = new Router();
 router.post('/:id', checkAuth, createComment);
 
 // remove comment
-// http://localhost:3002/api/posts/:id
+// http://localhost:8080/api/comments/:id
 router.delete('/:id', checkAuth, removeComment);
 
 // get all comments http://localhost:8080/api/comments
