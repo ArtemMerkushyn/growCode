@@ -22,6 +22,19 @@ export const createComment = createAsyncThunk(
     }
 );
 
+//update comment
+export const updateComment = createAsyncThunk(
+    'comment/updateComment',
+    async ({ id, updatedComment }) => {
+        try {
+            const data = axios.put(`/comments/${id}`, updatedComment);
+            return data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+)
+
 export const removeComment = createAsyncThunk(
     'comment/removePost',
     async ( {commentId} ) => {
@@ -73,6 +86,18 @@ export const commentSlice = createSlice(
                 state.comments.push(action.payload);
             },
             [createComment.rejected]: (state) => {
+                state.loading = false;
+            },
+            // update comment
+            [updateComment.pending]: (state) => {
+                state.loading = true;
+            },
+            [updateComment.fulfilled]: (state, action) => {
+                state.loading = false;
+                const index = state.comments.findIndex(comment => comment.id === action.payload.id);
+                if(index !==  -1) state.comments[index].comment = action.payload.comment;
+            },
+            [updateComment.rejected]: (state) => {
                 state.loading = false;
             },
             // remove comment
