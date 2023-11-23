@@ -34,11 +34,26 @@ export const createComment = async (req, res) => {
     }
 }
 
+//update comment
+export const updateComment = async (req, res) => {
+    try {
+        const { commentText } = req.body;
+        const comment = await Comment.findByIdAndUpdate(req.params.id);
+        if(!comment) return res.json({ message: 'Такого коментаря не існує'});
+
+        comment.comment = commentText;
+        await comment.save();
+        res.json({ comment, message: 'Ви успішно змінили Ваш коментар' });
+    } catch (error) {
+        res.json({ message: `Щось пішло нетак... ${error}` });
+    }
+}
+
 //remove comment
 export const removeComment = async (req, res) => {
     try {
         const comment = await Comment.findByIdAndDelete(req.params.id);
-        if(!comment) return res.json({ message: 'Такого коментаря не існує.'});
+        if(!comment) return res.json({ message: 'Такого коментаря не існує'});
 
         await Post.findByIdAndUpdate(comment.post, {
             $pull: { comments: req.params.id },
