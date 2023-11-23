@@ -1,21 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import TextareaAutosize from 'react-textarea-autosize';
 import Moment from 'react-moment';
+import { removeComment, updateComment } from '../redux/features/comment/commentSlice.js';
 import { AiFillChrome } from "react-icons/ai";
 import { BiLogoReact } from "react-icons/bi";
 import { LiaNode } from "react-icons/lia";
 import { BsIncognito } from "react-icons/bs";
-import { removeComment } from '../redux/features/comment/commentSlice';
 
 export const CommentItem = ({ cmt }) => {
     const { user } = useSelector((state) => state.auth);
+    const [ editComment, setEditComment ] = useState(false);
+    const [ commentText, setCommentText ] = useState(cmt.comment);
     const dispatch = useDispatch();
+
+    const openFormToEditComment = () => setEditComment(true);
 
     const removeCommentHandler = () => {
         const commentId = cmt._id;
         dispatch(removeComment({ commentId }));
+    }
+
+    const submitEditCommentHandler = async () => {
+        try {
+            const id = cmt._id;
+            const updatedComment  = { commentText };
+            await dispatch(updateComment({ id, updatedComment }));
+            setEditComment(false);
+            window.location.reload();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const cancelEditHandler = () => {
+        setCommentText(cmt.comment);
+        setEditComment(false);
     }
 
     const getProfessionIcon = (profession) => {
@@ -49,12 +70,33 @@ export const CommentItem = ({ cmt }) => {
                     </div>
                 </div>
                 <div className="comment__item-text">
-                    <TextareaAutosize disabled spellCheck={false} value={cmt.comment} />
+                    {editComment ? (
+                        <form
+                            onSubmit={e => e.preventDefault()}
+                        >
+                           <TextareaAutosize
+                                spellCheck={false}
+                                className='comment-edit__textarea'
+                                value={commentText}
+                                onChange={(e) => setCommentText(e.target.value)}
+                            />
+                        </form>
+                    ) : (<TextareaAutosize disabled spellCheck={false} value={cmt.comment} />)}
                 </div>
             </div>
             {user?._id === cmt.author &&(
                 <div className="comment-action__wrapper">
-                    <button className='link' onClick={removeCommentHandler}>Видалити</button>
+                    {editComment ? (
+                        <div>
+                            <button className='link' onClick={submitEditCommentHandler}>Оновити</button>
+                            <button className='link' onClick={cancelEditHandler}>Відмінити</button>
+                        </div>
+                        ) : (
+                        <div>
+                            <button className='link' onClick={openFormToEditComment}>Змінити</button>
+                            <button className='link' onClick={removeCommentHandler}>Видалити</button>
+                        </div>
+                    )}
                 </div>
             )}
         </div>

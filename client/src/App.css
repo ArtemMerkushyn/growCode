@@ -409,6 +409,27 @@ button.link {
     display: flex;
      margin-bottom: 5px;
 }
+
+.comment-action__wrapper div {
+    display: flex;
+    gap: 5px;
+}
+
+.comment-edit__textarea {
+    border-top: 1px solid #002F34;
+    border-bottom: 1px solid #002F34;
+    z-index: 0 !important;
+    animation: changeBorderColor 2s infinite;
+}
+
+@keyframes changeBorderColor {
+    0%, 100% {
+         border-color: transparent;
+    }
+    50% {
+         border-color: #002F34;
+    }
+}
 /*===========================================================================================================*\
 #pages
 \*===========================================================================================================*/
