@@ -94,6 +94,21 @@ export const updatePost = async (req, res) => {
     }
 }
 
+export const removePost = async (req, res) => {
+    try {
+        const post = await Post.findByIdAndDelete(req.params.id);
+        if(!post) return res.json({ message: 'Даного посту не існує' });
+
+        await User.findByIdAndUpdate(req.userId, {
+            $pull: { posts: req.params.id },
+        });
+
+        res.json({ message: 'Ви успішно видалили пост'});
+    } catch (error) {
+        res.json({ message: 'Щось пішло не так...' });
+    }
+}
+
 export const getAllPosts = async (req, res) => {
     try {
         const posts = await Post.find().sort('-createdAt');
