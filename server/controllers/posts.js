@@ -94,10 +94,14 @@ export const updatePost = async (req, res) => {
     }
 }
 
+// remove post
 export const removePost = async (req, res) => {
     try {
         const post = await Post.findByIdAndDelete(req.params.id);
         if(!post) return res.json({ message: 'Даного посту не існує' });
+
+        const commentIds = post.comments;
+        await Comment.deleteMany({ _id: { $in: commentIds } });
 
         await User.findByIdAndUpdate(req.userId, {
             $pull: { posts: req.params.id },

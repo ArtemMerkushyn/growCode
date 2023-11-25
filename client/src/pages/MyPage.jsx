@@ -82,7 +82,7 @@ export const MyPage = () => {
                         <Link to={'/add/posts'}><div className='add'></div></Link>
                     </div>
                     <div className="userpage__posts-container">
-                        {sortedPosts?.map((post, idx) => {
+                        {sortedPosts.map((post, idx) => {
                             return <MyPostItem post={post} key={idx}/>
                         })}
                     </div>

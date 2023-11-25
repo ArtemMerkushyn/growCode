@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from '../utils/axios.js';
 import Moment from 'react-moment';
 import TextareaAutosize from 'react-textarea-autosize';
@@ -13,6 +13,7 @@ import { toast } from 'react-toastify';
 import { PostItem } from '../components/PostItem.jsx';
 import { createComment, getPostComments } from '../redux/features/comment/commentSlice.js';
 import { CommentItem } from '../components/CommentItem.jsx';
+import { removePost } from '../redux/features/post/postSlice.js';
 
 export const PostPage = () => {
     const [ post, setPost ] = useState(null);
@@ -22,6 +23,7 @@ export const PostPage = () => {
     const { user } = useSelector((state) => state.auth);
     const params = useParams();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const fetchPost = useCallback(async () => {
         const { data } = await axios.get(`/posts/${params.id}`);
@@ -69,6 +71,12 @@ export const PostPage = () => {
         } catch (error) {
             console.log(error)
         }
+    }
+
+    const handleRemovePost = () => {
+        dispatch(removePost(params.id));
+        navigate('/blog');
+        window.location.reload();
     }
 
     const getProfessionIcon = (profession) => {
@@ -140,6 +148,7 @@ export const PostPage = () => {
                             <Link to={`/${params.id}/edit`}>
                                 <div className='link'>Редагувати</div>
                             </Link>
+                            <button className='link' onClick={handleRemovePost}>Видалити</button>
                         </div>
                     )}
                 </div>
