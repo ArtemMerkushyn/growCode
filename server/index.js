@@ -5,6 +5,7 @@ import cors from 'cors';
 import authRoute from './routes/auth.js';
 import postsRoute from './routes/posts.js';
 import commentsRoute from './routes/comments.js';
+import queriesRoute from "./routes/queries.js";
 
 const app = express();
 
@@ -20,6 +21,8 @@ app.use(express.json()); //для  того щоб express розумів що �
 app.use('/api/auth', authRoute);
 app.use('/api/posts', postsRoute);
 app.use('/api/comments/', commentsRoute);
+app.use('/api/queries', queriesRoute);
+
 
 async function start() {
     try {

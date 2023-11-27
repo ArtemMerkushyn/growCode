@@ -29,6 +29,12 @@ const UserShema = new mongoose.Schema(
                 ref: 'Post',
             },
         ],
+        queries: [
+            {
+                type: mongoose.Types.ObjectId,
+                ref: 'Query',
+            },
+        ],
     },
     { timestamps: true },
 );
