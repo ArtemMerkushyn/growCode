@@ -2,9 +2,16 @@ import mongoose from "mongoose";
 
 const QuerySchema = new mongoose.Schema(
     {
-        text: {
+        question: {
             type: String,
             required: true
+        },
+        text: {
+            type: String,
+        },
+        topic: {
+            type: String,
+            default: 'other'
         },
         username: { type: String },
         author: { 
