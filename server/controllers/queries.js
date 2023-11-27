@@ -4,11 +4,13 @@ import User from '../models/User.js';
 // create query
 export const createQuery = async (req, res) => {
     try {
-        const { text } = req.body;
+        const { question, text, topic} = req.body;
         const user = await User.findById(req.userId);
 
         const newQuery = new Query({
+            question,
             text,
+            topic,
             username: user.username,
             profession: user.profession,
             author: req.userId,
@@ -18,7 +20,7 @@ export const createQuery = async (req, res) => {
             $push: { queries: newQuery },
         });
 
-        return res.json(newQuery)
+        return res.json(newQuery);
     } catch (error) {
         res.json({ message: `Щось пішло не так ${error}` });
     }
