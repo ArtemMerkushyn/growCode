@@ -11,7 +11,7 @@ const QuerySchema = new mongoose.Schema(
         },
         topic: {
             type: String,
-            default: 'other'
+            default: 'інше'
         },
         username: { type: String },
         author: { 

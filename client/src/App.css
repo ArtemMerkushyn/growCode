@@ -148,6 +148,16 @@ button.link {
     line-height: 24px;
     font-weight: 700;
 }
+
+.title-small {
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 700;
+}
+
+.tac {
+    text-align: center;
+}
 /*===========================================================================================================*\
 #navbar
 \*===========================================================================================================*/
@@ -780,4 +790,91 @@ button.link {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+}
+/*=================================================*\
+#Forum-page
+\*=================================================*/
+.forum {
+    min-height: calc(100vh - 60px);
+    position: relative;
+    background: #fff;
+}
+
+.forum-form__wrapper {
+    max-width: 600px;
+    width: 100%;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -0%);
+    z-index: -1;
+}
+
+.forum-form__wrapper.active {
+    z-index: 10;
+}
+
+.forum-form {
+    background: #DDF2FD;
+    width: 100%;
+    max-height: 60px;
+    padding: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    transition: max-height 15s linear;
+}
+
+.forum-form.active {
+    max-height: calc(10000px);
+}
+
+.forum-form::before,
+.forum-form::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 7px;
+    background: #002F34;
+}
+
+.forum-form::before {
+    top: 0;
+}
+.forum-form::after {
+    bottom: 0;
+}
+
+.forum-form__item {
+    width: 100%;
+    text-align: center;
+}
+
+.forum-form__item.select {
+    display: flex;
+    justify-content: center;
+}
+
+.forum-form__item select {
+    padding: 5px;
+    background: #427D9D;
+    margin-left: 5px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.forum-form__item input,
+.forum-form__item textarea {
+    width: 100%;
+    padding: 5px;
+    background: #fff;
+    border: none;
+}
+
+.forum-form__item textarea {
+    min-height: 90px;
 }
