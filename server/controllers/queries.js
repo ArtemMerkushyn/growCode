@@ -25,3 +25,16 @@ export const createQuery = async (req, res) => {
         res.json({ message: `Щось пішло не так ${error}` });
     }
 }
+
+// get all queries 
+export const getAllQueries = async (req, res) => {
+    try {
+        const queries = await Query.find().sort('-createdAt');
+        const popularQueries = await Query.find().sort('-views')
+        if(!queries) return res.json({ message: 'Питання відсутні' });
+
+        res.json({ queries, popularQueries });
+    } catch (error) {
+        res.json({ message: 'Щось пішло не так' });
+    }
+}
