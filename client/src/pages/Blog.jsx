@@ -9,7 +9,6 @@ export const Blog = () => {
     const { posts, popularPosts } = useSelector((state) => state.post);
     const [sortBy, setSortBy] = useState('date');
     const { allComments } = useSelector((state) => state.comment);
-    console.log()
     const dispatch = useDispatch();
 
     useEffect(() => {

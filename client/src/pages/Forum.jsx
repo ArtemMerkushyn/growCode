@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import TextareaAutosize from 'react-textarea-autosize';
-import { createQuery } from '../redux/features/query/querySlice.js';
+import { createQuery, getAllQueries } from '../redux/features/query/querySlice.js';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { QueryItem } from '../components/QueryItem.jsx';
 
 export const Forum = () => {
     const [ isActiveForumForm , setIsActiveForumForm ] = useState(false);
     const [ question, setQuestion ] = useState('');
     const [ text, setText ] = useState('');
     const [ topic, setTopic ] = useState('інше');
+
+    const { queries } = useSelector((state) => state.query);
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -24,9 +28,22 @@ export const Forum = () => {
     const submitHandler = () => {
         if(!question) {
             toast('Поле твоє питання не може бути порожнім');
-        } else navigate('/forum');
+        }
         dispatch(createQuery({ question, text, topic }));
         isNoActiveFormHandler();
+        navigate('/me')
+    }
+
+    useEffect(() => {
+        dispatch(getAllQueries());
+    }, [dispatch]);
+
+    if (!queries.length) {
+        return (
+            <div>
+                Загрузка...
+            </div>
+        );
     }
 
     return (
@@ -79,6 +96,10 @@ export const Forum = () => {
                         </button>
                     </div>
                 </form>
+            </div>
+
+            <div className="forum__container">
+                {queries.map((query, idx) => <QueryItem key={idx} query={query}/>)}
             </div>
         </div>
     );

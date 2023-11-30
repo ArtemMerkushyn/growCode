@@ -22,8 +22,12 @@ export const createQuery = createAsyncThunk(
 export const getAllQueries = createAsyncThunk(
     'query/getAllQueries',
     async () => {
-        const { data } = axios.get('/queries');
-        return data;
+        try {
+            const { data } = await axios.get('/queries');
+            return data;
+        } catch (error) {
+            console.log(error)
+        }
     }
 )
 

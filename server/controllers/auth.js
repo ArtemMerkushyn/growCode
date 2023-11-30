@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 import { secred } from '../index.js';
 import Post from '../models/Post.js';
 import Comment from '../models/Comment.js';
+import Query from '../models/Query.js';
 
 //register user
 export const register = async(req, res) => {
@@ -138,6 +139,11 @@ export const updateUser = async (req, res) => {
             { 'author': req.userId },
             { $set: { 'profession': profession }},
         );
+
+        await Query.updateMany(
+            { 'author': req.userId },
+            { $set: { 'profession': profession }},
+        )
 
         await user.save();
         res.json({ user, message: 'Ви успішно оновили дані Вашої сторінки.' });
