@@ -5,9 +5,14 @@ export const Forum = () => {
     const [isActiveForumForm , setIsActiveForumForm ] = useState(false);
 
     const isActiveForumFormHandler = () => setIsActiveForumForm(true);
+    const isNonActiveFormHandler = () => setIsActiveForumForm(false)
+
     return (
         <div className='forum'>
-            <button className='forum__add' onClick={isActiveForumFormHandler}>Задати питання</button>
+            <div className="forum__header">
+                <h3 className='title1'>Задати питання</h3>
+                <button className='forum__add add' onClick={isActiveForumFormHandler}></button>
+            </div>
             <div className={`forum-form__wrapper ${isActiveForumForm ? 'active' : ''}`}>
                 <form className={`forum-form ${isActiveForumForm ? 'active' : ''}`} onSubmit={e => e.preventDefault()}>
                     <h5 className='title1'>Задай своє питання</h5>
@@ -36,11 +41,12 @@ export const Forum = () => {
                         <button
                             className='btn1'
                         >
-                            Добавити
+                            Запитати
                         </button>
 
                         <button
                             className='btn1 red'
+                            onClick={isNonActiveFormHandler}
                         >
                             Відмінити
                         </button>
