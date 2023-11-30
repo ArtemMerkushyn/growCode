@@ -17,6 +17,14 @@ export const createQuery = createAsyncThunk(
             console.log(error)
         }
     }
+);
+
+export const getAllQueries = createAsyncThunk(
+    'query/getAllQueries',
+    async () => {
+        const { data } = axios.get('/queries');
+        return data;
+    }
 )
 
 export const querySlice = createSlice({
@@ -37,6 +45,17 @@ export const querySlice = createSlice({
         [createQuery.rejected]: (state, action) => {
             state.loading = false;
             state.status = action.payload.message;
+        },
+        // receiving all queries
+        [getAllQueries.pending]: (state) => {
+            state.loading = true;
+        },
+        [getAllQueries.fulfilled]: (state, action) => {
+            state.loading = false;
+            state.queries = action.payload.queries;
+        },
+        [getAllQueries.rejected]: (state) => {
+            state.loading = false;
         },
     },
 });
