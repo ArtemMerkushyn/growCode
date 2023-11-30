@@ -1,11 +1,33 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import TextareaAutosize from 'react-textarea-autosize';
+import { createQuery } from '../redux/features/query/querySlice.js';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 export const Forum = () => {
-    const [isActiveForumForm , setIsActiveForumForm ] = useState(false);
+    const [ isActiveForumForm , setIsActiveForumForm ] = useState(false);
+    const [ question, setQuestion ] = useState('');
+    const [ text, setText ] = useState('');
+    const [ topic, setTopic ] = useState('інше');
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const isActiveForumFormHandler = () => setIsActiveForumForm(true);
-    const isNonActiveFormHandler = () => setIsActiveForumForm(false)
+    const isNoActiveFormHandler = () => {
+        setQuestion('');
+        setText('');
+        setTopic('');
+        setIsActiveForumForm(false);
+    }
+
+    const submitHandler = () => {
+        if(!question) {
+            toast('Поле твоє питання не може бути порожнім');
+        } else navigate('/forum');
+        dispatch(createQuery({ question, text, topic }));
+        isNoActiveFormHandler();
+    }
 
     return (
         <div className='forum'>
@@ -18,7 +40,7 @@ export const Forum = () => {
                     <h5 className='title1'>Задай своє питання</h5>
                     <label className='forum-form__item select'>
                         <h6 className='title-small'>Вибери тему питання</h6>
-                        <select>
+                        <select value={topic} onChange={e => setTopic(e.target.value)}>
                             <option value="інше">інше</option>
                             <option value="HTML/CSS">HTML/CSS</option>
                             <option value="JavaScript">JavaScript</option>
@@ -30,23 +52,28 @@ export const Forum = () => {
                         <input
                             className='forum-form__input title-small'
                             type="text" 
+                            value={question}
+                            onChange={e => setQuestion(e.target.value)}
                         />
                     </label>
                     <label className='forum-form__item text'>
                         <h6 className='title-small'>Опиши більш детальніше твоє питання</h6>
                         <TextareaAutosize
+                            value={text}
+                            onChange={e => setText(e.target.value)}
                         />
                     </label>
                     <div className='btns-wrapper'>
                         <button
                             className='btn1'
+                            onClick={submitHandler}
                         >
                             Запитати
                         </button>
 
                         <button
                             className='btn1 red'
-                            onClick={isNonActiveFormHandler}
+                            onClick={isNoActiveFormHandler}
                         >
                             Відмінити
                         </button>
