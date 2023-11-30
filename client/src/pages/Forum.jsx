@@ -38,14 +38,6 @@ export const Forum = () => {
         dispatch(getAllQueries());
     }, [dispatch]);
 
-    if (!queries.length) {
-        return (
-            <div>
-                Загрузка...
-            </div>
-        );
-    }
-
     return (
         <div className='forum'>
             <div className="forum__header">
