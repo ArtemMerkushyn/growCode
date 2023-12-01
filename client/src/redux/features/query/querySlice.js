@@ -31,6 +31,18 @@ export const getAllQueries = createAsyncThunk(
     }
 );
 
+export const getMyQueries = createAsyncThunk(
+    'query/getMyQueries',
+    async () => {
+        try {
+            const { data } = await axios.get('/queries/user/me');
+            return data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+)
+
 export const querySlice = createSlice({
     name: 'query',
     initialState,
@@ -61,6 +73,17 @@ export const querySlice = createSlice({
         [getAllQueries.rejected]: (state) => {
             state.loading = false;
         },
+        // get my queries
+        [getMyQueries.pending]: (state) => {
+            state.loading = true;
+        },
+        [getMyQueries.fulfilled]: (state, action) => {
+            state.loading = false;
+            state.queries = action.payload;
+        },
+        [getMyQueries.rejected]: (state) => {
+            state.loading = false;
+        }
     },
 });
 
