@@ -8,10 +8,13 @@ import { LiaNode } from "react-icons/lia";
 import { Link } from 'react-router-dom';
 import { getMyPosts } from '../redux/features/post/postSlice.js';
 import { MyPostItem } from '../components/MyPostItem.jsx';
+import { getMyQueries } from '../redux/features/query/querySlice.js';
+import { QueryItem } from '../components/QueryItem.jsx';
 
 export const MyPage = () => {
     const user = useSelector((state) => state.auth.user);
     const posts = useSelector((state) => state.post.posts);
+    const queries = useSelector((state) => state.query.queries);
     const loading = useSelector((state) => state.post.loading);
 
     const dispatch = useDispatch();
@@ -22,6 +25,12 @@ export const MyPage = () => {
 
     //сортую поти по даті(нові будуть вище)
     const sortedPosts = [...posts].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+    useEffect(() => {
+        dispatch(getMyQueries());
+    }, [dispatch]);
+
+    const sortedQueries = [...queries].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
     const getProfessionIcon = (profession) => {
         switch (profession) {
@@ -89,6 +98,9 @@ export const MyPage = () => {
                 </div>
                 <div className="userpage__questions">
                     <h3 className='title1'>Мої питання</h3>
+                    {sortedQueries.map((query, idx) => {
+                        return <QueryItem key={idx} query={query} />
+                    })}
                 </div>
             </div>
         </div>

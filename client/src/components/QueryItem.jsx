@@ -49,8 +49,8 @@ export const QueryItem = ({ query }) => {
             </div>
             <div className="query-item">
                 {query && query.question ? (
-                    <h3 className='title-post'>{query.question}</h3>
-                    ) : (<h3 className='title-post'>Питання</h3>)
+                    <h4 className='title-post'>{query.question}</h4>
+                    ) : (<h4 className='title-post'>Питання</h4>)
                 }
             </div>
             {query && query.text ? (

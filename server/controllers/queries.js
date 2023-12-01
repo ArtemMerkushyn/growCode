@@ -40,17 +40,17 @@ export const getAllQueries = async (req, res) => {
 }
 
 // get my queries
-export const getMyQueries = async () => {
+export const getMyQueries = async (req, res) => {
     try {
         const user = await User.findById(req.userId);
         const list = await Promise.all(
             user.queries.map((query) => {
-                return Query.findById(query._id)
+                return Query.findById(query._id);
             }),
         );
 
         res.json(list);
     } catch (error) {
-        res.json({ message: 'Щось пішло не так' });
+        res.json({ message: `Щось пішло не так: ${error}` });
     }
 }
