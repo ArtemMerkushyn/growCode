@@ -38,6 +38,7 @@ export const QueryItem = ({ query }) => {
                         </Link>
                     </div>
                 </div>
+                <div className="query-item__topic tag">{query.topic}</div>
                 <div className="post-item__date">
                     {query && query.createdAt ? (
                         <Moment date={query.createdAt} format='DD.MM.YY HH:mm'/>
