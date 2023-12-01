@@ -16,8 +16,13 @@ a {
     color: inherit;
 }
 
+select {
+    outline: none;
+}
+
 input {
     outline: none;
+    border: none;
 }
 
 textarea {
@@ -27,6 +32,7 @@ textarea {
     overflow: hidden;
     background: transparent;
     border: none;
+    background: #fff;
 }
 
 button {
@@ -661,6 +667,54 @@ button.link {
     font-size: 15px;
     line-height: 18px;
     font-weight: 400;
+}
+/*=================================================*\
+#FormAddPage
+\*=================================================*/
+.form-add {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    background: #DDF2FD;
+    max-width: 600px;
+    width: 100%;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    margin: 50px auto 20px;
+}
+
+.form-add__item {
+    width: 100%;
+    text-align: center;
+}
+
+.form-add__item.select {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.form-add__item select {
+    cursor: pointer;
+    border-radius: 10px;
+    border: 2px solid #9BBEC8;
+    background: #427D9D;
+    color: #fff;
+    padding: 3px 5px;
+}
+
+.form-add__item input, 
+.form-add__item textarea {
+    border-radius: 10px;
+    border: 2px solid #9BBEC8;
+    width: 100%;
+    padding: 5px 10px;
+}
+
+.form-add__item textarea {
+    min-height: 93px;
 }
 /*=================================================*\
 #AddPostPage/EditPostPage/PostPage

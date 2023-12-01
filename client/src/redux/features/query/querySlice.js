@@ -11,10 +11,10 @@ export const createQuery = createAsyncThunk(
     'query/createQuery',
     async ({ question, text, topic }) => {
         try {
-            const { data } = axios.post('/queries', { question, text, topic });
+            const { data } = await axios.post('/queries', { question, text, topic });
             return data;
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     }
 );
@@ -29,7 +29,7 @@ export const getAllQueries = createAsyncThunk(
             console.log(error)
         }
     }
-)
+);
 
 export const querySlice = createSlice({
     name: 'query',
@@ -42,8 +42,8 @@ export const querySlice = createSlice({
         },
         [createQuery.fulfilled]: (state, action) => {
             state.loading = false;
-            //state.queries.push(action.payload);
-            state.queries = Array.isArray(state.queries) ? [...state.queries, action.payload] : [action.payload];
+            state.queries.push(action.payload);
+            //state.queries = Array.isArray(state.queries) ? [...state.queries, action.payload] : [action.payload];
             //state.status = action.payload.message;
         },
         [createQuery.rejected]: (state, action) => {
