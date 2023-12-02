@@ -93,7 +93,7 @@ export const CommentItem = ({ cmt }) => {
                         </div>
                         ) : (
                         <div>
-                            <button className='link' onClick={openFormToEditComment}>Змінити</button>
+                            <button className='link' onClick={openFormToEditComment}>Редагувати</button>
                             <button className='link' onClick={removeCommentHandler}>Видалити</button>
                         </div>
                     )}

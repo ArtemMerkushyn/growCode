@@ -14,6 +14,8 @@ import { PostItem } from '../components/PostItem.jsx';
 import { createComment, getPostComments } from '../redux/features/comment/commentSlice.js';
 import { CommentItem } from '../components/CommentItem.jsx';
 import { removePost } from '../redux/features/post/postSlice.js';
+import { HiPencilAlt } from "react-icons/hi";
+import { BsTrash3Fill } from "react-icons/bs";
 
 export const PostPage = () => {
     const [ post, setPost ] = useState(null);
@@ -144,11 +146,11 @@ export const PostPage = () => {
                         </button>
                     </div>
                     {user?._id === post.author && (
-                        <div className="post-item__action-btns">
+                        <div className="action-btns">
                             <Link to={`/${params.id}/edit`}>
-                                <div className='link'>Редагувати</div>
+                                <div className='action-btn'><HiPencilAlt/></div>
                             </Link>
-                            <button className='link' onClick={handleRemovePost}>Видалити</button>
+                            <button className='action-btn' onClick={handleRemovePost}><BsTrash3Fill /></button>
                         </div>
                     )}
                 </div>
