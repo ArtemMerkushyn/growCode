@@ -489,7 +489,11 @@ button.link {
 /*===========================================================================================================*\
 #query-item
 \*===========================================================================================================*/
-
+a.query {
+    background: transparent;
+    position: relative;
+    z-index: 10;
+}
 .query-item:first-child {
     display: flex;
     align-items: center;
@@ -498,6 +502,32 @@ button.link {
 
 .query-item textarea {
     width: 100%;
+    position: relative;
+    z-index: -1;
+}
+/*===========================================================================================================*\
+#count
+\*===========================================================================================================*/
+.count {
+    display: flex;
+    gap: 10px;
+}
+
+.count__item {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    font-size: 18px;
+    color: #002F34;
+    height: 20px;
+}
+
+.count__item svg {
+    fill: #002F34;
+}
+
+.count__item .fs {
+    font-size: 22px;
 }
 /*===========================================================================================================*\
 #pages
@@ -619,6 +649,9 @@ button.link {
 
 .userpage__posts {
     width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .userpage__posts-container {
@@ -633,10 +666,12 @@ button.link {
     display: flex;
     align-items: center;
     gap: 5px;
-    margin-bottom: 10px;
 }
 
 .userpage__questions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     width: 40%;
 }
 
@@ -644,7 +679,6 @@ button.link {
     height: 30px;
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
 }
 /*=======================================================*/
 .userpage-edit {

@@ -14,6 +14,7 @@ import { PostPage } from './pages/PostPage.jsx';
 import { PostPageEdit } from './pages/PostPageEdit.jsx';
 import { UserPage } from './pages/UserPage.jsx';
 import { AddQueryPage } from './pages/AddQueryPage.jsx';
+import { QueryPage } from './pages/QueryPage.jsx';
 
 export const router = createBrowserRouter([
     {
@@ -67,6 +68,10 @@ export const router = createBrowserRouter([
             {
                 path: 'forum/add',
                 element: <AddQueryPage/>
+            },
+            {
+                path: 'query/:id',
+                element: <QueryPage/>
             },
             {
                 path: 'vacancies',

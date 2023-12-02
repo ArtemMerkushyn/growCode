@@ -6,6 +6,7 @@ import { AiFillChrome } from "react-icons/ai";
 import { BiLogoReact } from "react-icons/bi";
 import { LiaNode } from "react-icons/lia";
 import { BsIncognito } from "react-icons/bs";
+import { CountItem } from './CountItem';
 
 export const QueryItem = ({ query }) => {
     const getProfessionIcon = (profession) => {
@@ -22,7 +23,7 @@ export const QueryItem = ({ query }) => {
     };
 
     return (
-        <div className='query'>
+        <Link className='query' to={`/query/${query._id}`}>
             <div className="query-item">
                 <div className="post-item__info-username">
                     <div className='userpage__info-avatar'>
@@ -62,6 +63,7 @@ export const QueryItem = ({ query }) => {
                     />
                 </div>
             ) : (<div></div>)}
-        </div>
+            <CountItem about={query}/>
+        </Link>
     );
 }

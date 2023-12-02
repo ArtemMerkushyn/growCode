@@ -9,7 +9,6 @@ import { Link } from 'react-router-dom';
 import { getMyPosts } from '../redux/features/post/postSlice.js';
 import { MyPostItem } from '../components/MyPostItem.jsx';
 import { getMyQueries } from '../redux/features/query/querySlice.js';
-import { QueryItem } from '../components/QueryItem.jsx';
 
 export const MyPage = () => {
     const user = useSelector((state) => state.auth.user);
@@ -98,9 +97,6 @@ export const MyPage = () => {
                 </div>
                 <div className="userpage__questions">
                     <h3 className='title1'>Мої питання</h3>
-                    {sortedQueries.map((query, idx) => {
-                        return <QueryItem key={idx} query={query} />
-                    })}
                 </div>
             </div>
         </div>
