@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { checkAuth } from '../utils/checkAuth.js';
-import { createQuery, getAllQueries, getMyQueries } from '../controllers/queries.js';
+import { createQuery, getAllQueries, getMyQueries, getUserQueries } from '../controllers/queries.js';
 
 const router = Router();
 
@@ -16,3 +16,7 @@ export default router;
 // get my queries
 // http://localhost:8080/api/queries/user/me
 router.get('/user/me', checkAuth, getMyQueries);
+
+// get user queries
+// http://localhost:8080/api/queries/:id/queries
+router.get('/:id/queries', getUserQueries);

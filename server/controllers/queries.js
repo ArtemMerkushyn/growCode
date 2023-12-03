@@ -54,3 +54,19 @@ export const getMyQueries = async (req, res) => {
         res.json({ message: `Щось пішло не так: ${error}` });
     }
 }
+
+// get user queries
+export const getUserQueries = async (req, res) => {
+    const idUser = req.params.id;
+    try {
+        const user = await User.findById(idUser);
+        const list = await Promise.all(
+            user.queries.map((query) => {
+                return Query.findById(query._id);
+            })
+        );
+        res.json(list);
+    } catch (error) {
+        res.json({ message: `Щось пішло не так: ${error}` });
+    }
+}
