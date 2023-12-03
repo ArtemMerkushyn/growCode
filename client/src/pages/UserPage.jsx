@@ -9,11 +9,12 @@ import { BsIncognito } from "react-icons/bs";
 import { UserPostsItem } from '../components/UserPostItem.jsx';
 
 export const UserPage = () => {
-    const [userInfo, setUserInfo ] = useState(null);
+    const [ userInfo, setUserInfo ] = useState(null);
     const [ posts, setPosts ] = useState([]);
+    const [ queries, setQueries ] = useState([]);
     const { id } = useParams();
 
-    const fetchUserInfo = useCallback(async() => {
+    const fetchUserPosts = useCallback(async() => {
         try {
             const { data } = await axios.get(`/posts/${id}/posts`);
             setUserInfo(data.user);
@@ -25,8 +26,8 @@ export const UserPage = () => {
     }, [id]);
 
     useEffect(() => {
-        fetchUserInfo();
-    }, [fetchUserInfo]);
+        fetchUserPosts();
+    }, [fetchUserPosts]);
 
     const getProfessionIcon = (profession) => {
         switch (profession) {
@@ -77,7 +78,7 @@ export const UserPage = () => {
             <div className="userpage-container">
                 <div className="userpage__posts">
                     <div className="userpage__posts-header">
-                        <h3 className='title1'>Пости користувача</h3>
+                        <h3 className='title1'>Блог</h3>
                     </div>
                     <div className="userpage__posts-container">
                         {posts?.map((post, idx) => {
@@ -86,7 +87,9 @@ export const UserPage = () => {
                     </div>
                 </div>
                 <div className="userpage__questions">
-                    <h3 className='title1'>Питання користувача</h3>
+                    <div className="userpage__posts-header">
+                        <h3 className='title1'>Форум</h3>
+                    </div>
                 </div>
             </div>
         </div>

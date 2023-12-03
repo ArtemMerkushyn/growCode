@@ -654,7 +654,8 @@ a.query {
     gap: 10px;
 }
 
-.userpage__posts-container {
+.userpage__posts-container,
+.userpage__forum-container {
     padding-right: 5px;
     margin-bottom: 20px;
     display: flex;
@@ -662,20 +663,21 @@ a.query {
     gap: 20px;
 }
 
-.userpage__posts-header {
+.userpage__posts-header,
+.userpage__forum-header {
     display: flex;
     align-items: center;
     gap: 5px;
 }
 
-.userpage__questions {
+.userpage__forum {
     display: flex;
     flex-direction: column;
     gap: 10px;
     width: 40%;
 }
 
-.userpage__questions h3 {
+.userpage__forum h3 {
     height: 30px;
     display: flex;
     align-items: center;
@@ -935,98 +937,10 @@ a.query {
     align-items: center;
     gap: 5px;
 }
-.forum-form__wrapper {
-    max-width: 600px;
-    width: 100%;
-    position: absolute;
-    top: 10%;
-    right: 50%;
-    transform: translate(50%, 0%);
-    z-index: -1;
-    opacity: 0;
-    overflow: hidden;
-    padding: 0;
-    transition: opacity .4s linear, z-index .7s linear;
-}
-
-.forum-form__wrapper.active {
-    opacity: 1;
-    z-index: 10;
-}
-
-.forum-form {
-    background: #DDF2FD;
-    width: 100%;
-    padding: 20px;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    flex-direction: column;
-    position: relative;
-    overflow: hidden;
-    transition: max-height 25s linear;
-}
-
-.forum-form::before,
-.forum-form::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 7px;
-    background: #002F34;
-    transition: all .4s linear;
-}
-
-.forum-form::before {
-    top: 0;
-    right: -100%;
-}
-
-.forum-form::after {
-    bottom: 0;
-    left: -100%;
-}
-
-.forum-form__wrapper.active .forum-form::before {
-    right: 0;
-}
-
-.forum-form__wrapper.active .forum-form::after {
-   left: 0; 
-}
-
-.forum-form__item {
-    width: 100%;
-    text-align: center;
-}
-
-.forum-form__item.select {
-    display: flex;
-    justify-content: center;
-}
-
-.forum-form__item select {
-    padding: 5px;
-    background: #427D9D;
-    margin-left: 5px;
-    color: #fff;
-    cursor: pointer;
-}
-
-.forum-form__item input,
-.forum-form__item textarea {
-    width: 100%;
-    padding: 5px;
-    background: #fff;
-    border: none;
-}
-
-.forum-form__item textarea {
-    min-height: 90px;
-}
 
 .forum__container {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    width: 60%;
 }

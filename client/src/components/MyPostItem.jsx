@@ -1,6 +1,5 @@
 import React from 'react';
 import Moment from 'react-moment';
-import { AiFillEye, AiOutlineMessage } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import TextareaAutosize from 'react-textarea-autosize';
 import { AiFillChrome } from "react-icons/ai";
@@ -8,6 +7,7 @@ import { BiLogoReact } from "react-icons/bi";
 import { LiaNode } from "react-icons/lia";
 import { BsIncognito } from "react-icons/bs";
 import { useSelector } from 'react-redux';
+import { CountItem } from './CountItem';
 
 export const MyPostItem = ({ post }) => {
     const user = useSelector((state) => state.auth.user);
@@ -63,13 +63,7 @@ export const MyPostItem = ({ post }) => {
                 </div>
             </Link>
             <div className='post-item__counter'>
-                <button className='post-item__counter-btn'>
-                    <AiFillEye/><span>{post.views}</span>
-                </button>
-                <button className='post-item__counter-btn'>
-                    <AiOutlineMessage />{' '}
-                    <span>{post.comments?.length || 0} </span>
-                </button>
+                <CountItem about={post}/>
             </div>
         </div>
     );

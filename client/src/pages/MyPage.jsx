@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { getMyPosts } from '../redux/features/post/postSlice.js';
 import { MyPostItem } from '../components/MyPostItem.jsx';
 import { getMyQueries } from '../redux/features/query/querySlice.js';
+import { QueryItem } from '../components/QueryItem.jsx';
 
 export const MyPage = () => {
     const user = useSelector((state) => state.auth.user);
@@ -86,7 +87,7 @@ export const MyPage = () => {
             <div className="userpage-container">
                 <div className="userpage__posts">
                     <div className="userpage__posts-header">
-                        <h3 className='title1'>Мої пости</h3>
+                        <h3 className='title1'>Мій блог</h3>
                         <Link to={'/add/posts'}><div className='add'></div></Link>
                     </div>
                     <div className="userpage__posts-container">
@@ -95,8 +96,18 @@ export const MyPage = () => {
                         })}
                     </div>
                 </div>
-                <div className="userpage__questions">
-                    <h3 className='title1'>Мої питання</h3>
+                <div className="userpage__forum">
+                    <div className="userpage__forum-header">
+                        <h3 className='title1'>Форум</h3>
+                        <Link to={'/forum/add'}><div className='add'></div></Link>
+                    </div>
+                    <div className="userpage__forum-container">
+                        {sortedQueries.map((query) => {
+                            return <QueryItem query={query}/>
+                        })
+                            
+                        }
+                    </div>
                 </div>
             </div>
         </div>
