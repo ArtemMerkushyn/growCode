@@ -7,7 +7,7 @@ import { BiLogoReact } from "react-icons/bi";
 import { LiaNode } from "react-icons/lia";
 import { BsIncognito } from "react-icons/bs";
 import { UserPostsItem } from '../components/UserPostItem.jsx';
-import { MyQueryItem } from '../components/MyQueryItem.jsx';
+import { UserQueryItem } from '../components/UserQueryItem.jsx';
 
 export const UserPage = () => {
     const [ userInfo, setUserInfo ] = useState(null);
@@ -106,7 +106,7 @@ export const UserPage = () => {
                         <h3 className='title1'>Форум</h3>
                     </div>
                     {queries?.map((query, idx) => {
-                        return <MyQueryItem key={idx} query={query} />
+                        return <UserQueryItem key={idx} query={query} />
                     })}
                 </div>
             </div>

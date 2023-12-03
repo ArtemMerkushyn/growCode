@@ -6,10 +6,8 @@ import { BiLogoReact } from "react-icons/bi";
 import { LiaNode } from "react-icons/lia";
 import { BsIncognito } from "react-icons/bs";
 import { CountItem } from './CountItem';
-import { useSelector } from 'react-redux';
 
-export const MyQueryItem = ({ query }) => {
-    const user = useSelector((state) => state.auth.user);
+export const UserQueryItem = ({ query }) => {
     const getProfessionIcon = (profession) => {
         switch (profession) {
             case 'front-end developer':
@@ -28,8 +26,8 @@ export const MyQueryItem = ({ query }) => {
             <div className="query-item">
                 <div className="post-item__info-username">
                     <div className='userpage__info-avatar'>
-                        {user && user.profession ? (
-                            getProfessionIcon(user.profession)
+                        {query && query.profession ? (
+                            getProfessionIcon(query.profession)
                         ) : (
                             <BsIncognito />
                         )}
