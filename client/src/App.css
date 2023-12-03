@@ -676,12 +676,6 @@ a.query {
     gap: 10px;
     width: 40%;
 }
-
-.userpage__forum h3 {
-    height: 30px;
-    display: flex;
-    align-items: center;
-}
 /*=======================================================*/
 .userpage-edit {
     display: flex;
@@ -946,6 +940,7 @@ a.query {
 }
 
 .forum .title-post {
+    display: inline-block;
     transition: all .2s linear;
 }
 .forum .title-post:hover {

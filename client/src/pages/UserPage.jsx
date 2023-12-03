@@ -7,6 +7,7 @@ import { BiLogoReact } from "react-icons/bi";
 import { LiaNode } from "react-icons/lia";
 import { BsIncognito } from "react-icons/bs";
 import { UserPostsItem } from '../components/UserPostItem.jsx';
+import { MyQueryItem } from '../components/MyQueryItem.jsx';
 
 export const UserPage = () => {
     const [ userInfo, setUserInfo ] = useState(null);
@@ -25,9 +26,23 @@ export const UserPage = () => {
         }
     }, [id]);
 
+    const fetchUserQueries = useCallback(async () => {
+        try {
+            const { data } = await axios.get(`/queries/${id}/queries`);
+            const sortedQueries = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            setQueries(sortedQueries);
+        } catch (error) {
+            console.log(error);
+        }
+    }, [id]);
+    
     useEffect(() => {
         fetchUserPosts();
     }, [fetchUserPosts]);
+
+    useEffect(() => {
+        fetchUserQueries()
+    }, [fetchUserQueries]);
 
     const getProfessionIcon = (profession) => {
         switch (profession) {
@@ -86,10 +101,13 @@ export const UserPage = () => {
                         })}
                     </div>
                 </div>
-                <div className="userpage__questions">
-                    <div className="userpage__posts-header">
+                <div className="userpage__forum">
+                    <div className="userpage__forum-header">
                         <h3 className='title1'>Форум</h3>
                     </div>
+                    {queries?.map((query, idx) => {
+                        return <MyQueryItem key={idx} query={query} />
+                    })}
                 </div>
             </div>
         </div>

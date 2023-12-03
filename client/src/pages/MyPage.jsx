@@ -9,7 +9,6 @@ import { Link } from 'react-router-dom';
 import { getMyPosts } from '../redux/features/post/postSlice.js';
 import { MyPostItem } from '../components/MyPostItem.jsx';
 import { getMyQueries } from '../redux/features/query/querySlice.js';
-import { QueryItem } from '../components/QueryItem.jsx';
 import { MyQueryItem } from '../components/MyQueryItem.jsx';
 
 export const MyPage = () => {
