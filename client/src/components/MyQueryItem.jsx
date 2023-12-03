@@ -7,7 +7,7 @@ import { LiaNode } from "react-icons/lia";
 import { BsIncognito } from "react-icons/bs";
 import { CountItem } from './CountItem';
 
-export const QueryItem = ({ query }) => {
+export const MyQueryItem = ({ query }) => {
     const getProfessionIcon = (profession) => {
         switch (profession) {
             case 'front-end developer':
@@ -22,7 +22,7 @@ export const QueryItem = ({ query }) => {
     };
 
     return (
-        <div className='query'>
+        <Link className='query' to={`/query/${query._id}`}>
             <div className="query-item">
                 <div className="post-item__info-username">
                     <div className='userpage__info-avatar'>
@@ -33,9 +33,7 @@ export const QueryItem = ({ query }) => {
                         )}
                     </div>
                     <div className='userpage__info-username'>
-                        <Link className='link' to={query && query.author ? `/user/${query.author}` : '#'}>
-                            {query ? (<div>{query.username}</div>):(<div>загрузка</div>)}
-                        </Link>
+                        {query ? (<div>{query.username}</div>):(<div>загрузка</div>)}
                     </div>
                 </div>
                 <div className="query-item__topic tag">{query.topic}</div>
@@ -48,14 +46,12 @@ export const QueryItem = ({ query }) => {
                 </div>
             </div>
             <div className="query-item">
-                <Link to={`/query/${query._id}`}>
                 {query && query.question ? (
                     <h4 className='title-post'>{query.question}</h4>
                     ) : (<h4 className='title-post'>Питання</h4>)
                 }
-                </Link>
             </div>
             <CountItem about={query}/>
-        </div>
+        </Link>
     );
 }

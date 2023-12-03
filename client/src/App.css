@@ -944,3 +944,10 @@ a.query {
     gap: 20px;
     width: 60%;
 }
+
+.forum .title-post {
+    transition: all .2s linear;
+}
+.forum .title-post:hover {
+    color: #9BBEC8;
+}

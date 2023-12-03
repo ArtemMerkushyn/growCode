@@ -10,6 +10,7 @@ import { getMyPosts } from '../redux/features/post/postSlice.js';
 import { MyPostItem } from '../components/MyPostItem.jsx';
 import { getMyQueries } from '../redux/features/query/querySlice.js';
 import { QueryItem } from '../components/QueryItem.jsx';
+import { MyQueryItem } from '../components/MyQueryItem.jsx';
 
 export const MyPage = () => {
     const user = useSelector((state) => state.auth.user);
@@ -102,11 +103,9 @@ export const MyPage = () => {
                         <Link to={'/forum/add'}><div className='add'></div></Link>
                     </div>
                     <div className="userpage__forum-container">
-                        {sortedQueries.map((query) => {
-                            return <QueryItem query={query}/>
-                        })
-                            
-                        }
+                        {sortedQueries.map((query, idx) => {
+                            return <MyQueryItem key={idx} query={query}/>
+                        })}
                     </div>
                 </div>
             </div>
