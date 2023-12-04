@@ -7,8 +7,11 @@ import { AiFillChrome } from "react-icons/ai";
 import { BiLogoReact } from "react-icons/bi";
 import { LiaNode } from "react-icons/lia";
 import { BsIncognito } from "react-icons/bs";
+import { useSelector } from 'react-redux';
 
 export const PostItem = ({ post }) => {
+    const user = useSelector((state) => state.auth.user);
+
     const getProfessionIcon = (profession) => {
         switch (profession) {
             case 'front-end developer':
@@ -41,7 +44,7 @@ export const PostItem = ({ post }) => {
                         )}
                     </div>
                     <div className='userpage__info-username'>
-                        <Link className='link' to={`/user/${post.author}`}>
+                        <Link className='link' to={post && post?.author === user?._id ? `/me` : `/user/${post?.author}`}>
                             {post ? (<div>{post.username}</div>):(<div>загрузка</div>)}
                         </Link>
                     </div>

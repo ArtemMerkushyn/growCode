@@ -55,7 +55,7 @@ export const CommentItem = ({ cmt }) => {
         <div className='comment'>
             <div className="comment__item">
                 <div className="comment__item-info">
-                    <Link to={`/user/${cmt.author}`}>
+                    <Link to={cmt && cmt.author === user?._id ? `/me` : `/user/${cmt?.author}`}>
                         <div className="comment__item-info--avatar">
                             {cmt && cmt.profession ? (
                                     getProfessionIcon(cmt.profession)
