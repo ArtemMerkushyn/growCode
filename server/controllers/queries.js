@@ -70,3 +70,17 @@ export const getUserQueries = async (req, res) => {
         res.json({ message: `Щось пішло не так: ${error}` });
     }
 }
+
+// get query by id
+export const getQueryById = async (req, res) => {
+    try {
+        const query = await Query.findByIdAndUpdate(req.params.id, {
+            $inc: { views: 1 },
+        },
+        { new: true });
+
+        res.json(query);
+    } catch (error) {
+        res.json({ message: `Щось пішло не так: ${error}` });
+    }
+}
