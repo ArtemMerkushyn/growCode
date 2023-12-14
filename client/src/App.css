@@ -79,6 +79,10 @@ button.link {
     transition: all .2s linear;
 }
 
+.post-item__info-username:hover .link::before{
+    transform: translateX(0%);
+}
+
 .action-btns {
     display: flex;
     gap: 10px;

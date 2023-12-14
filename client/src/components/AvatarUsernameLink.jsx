@@ -23,19 +23,19 @@ export const AvatarUsernameLink = ({ about }) => {
     };
 
     return (
-        <div className="post-item__info-username">
-            <div className='userpage__info-avatar'>
-                {about && about.profession ? (
-                    getProfessionIcon(about.profession)
-                ) : (
-                    <BsIncognito />
-                )}
+        <Link className='' to={about && about?.author === user?._id ? `/me` : `/user/${about?.author}`}>
+            <div className="post-item__info-username">
+                <div className='userpage__info-avatar'>
+                    {about && about.profession ? (
+                        getProfessionIcon(about.profession)
+                    ) : (
+                        <BsIncognito />
+                    )}
+                </div>
+                <div className='userpage__info-username link'>
+                        {about ? (<div>{about.username}</div>):(<div>загрузка</div>)}
+                </div>
             </div>
-            <div className='userpage__info-username'>
-                <Link className='link' to={about && about?.author === user?._id ? `/me` : `/user/${about?.author}`}>
-                    {about ? (<div>{about.username}</div>):(<div>загрузка</div>)}
-                </Link>
-            </div>
-        </div>
+        </Link>
     );
 }
