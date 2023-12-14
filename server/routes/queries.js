@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { checkAuth } from '../utils/checkAuth.js';
-import { createQuery, getAllQueries, getMyQueries, getQueryById, getUserQueries } from '../controllers/queries.js';
+import { createQuery, getAllQueries, getMyQueries, getQueryById, getUserQueries, updateQuery } from '../controllers/queries.js';
 
 const router = Router();
 
@@ -24,3 +24,6 @@ router.get('/:id/queries', getUserQueries);
 // get query by id
 // http://localhost:8080/api/queries/:id
 router.get('/:id', getQueryById);
+
+// update query
+router.put('/:id', checkAuth, updateQuery);

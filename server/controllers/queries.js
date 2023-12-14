@@ -84,3 +84,20 @@ export const getQueryById = async (req, res) => {
         res.json({ message: `Щось пішло не так: ${error}` });
     }
 }
+
+// update query
+export const updateQuery = async (req, res) => {
+    try {
+        const { question, text, topic, id } = req.body;
+        const query = await Query.findById(id);
+
+        query.question = question;
+        query.text = text;
+        query.topic = topic;
+
+        await query.save();
+        res.json({ post, message: 'Ви успішно оновили Ваше питання' });
+    } catch (error) {
+        res.json({ message: `Щось пішло не так: ${error}` });
+    }
+}
