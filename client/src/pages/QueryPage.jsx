@@ -56,7 +56,7 @@ export const QueryPage = () => {
                 <CountItem about={query} />
                 {user?._id === query.author && (
                     <div className="action-btns">
-                        <Link to={`/${params.id}/edit`}>
+                        <Link to={`/query/${query._id}/edit`}>
                             <div className='action-btn'><HiPencilAlt/></div>
                         </Link>
                         <button className='action-btn'><BsTrash3Fill /></button>

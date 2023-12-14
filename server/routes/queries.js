@@ -26,4 +26,5 @@ router.get('/:id/queries', getUserQueries);
 router.get('/:id', getQueryById);
 
 // update query
+// http://localhost:8080/api/queries/:id
 router.put('/:id', checkAuth, updateQuery);

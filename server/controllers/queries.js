@@ -96,7 +96,7 @@ export const updateQuery = async (req, res) => {
         query.topic = topic;
 
         await query.save();
-        res.json({ post, message: 'Ви успішно оновили Ваше питання' });
+        res.json({ query, message: 'Ви успішно оновили Ваше питання' });
     } catch (error) {
         res.json({ message: `Щось пішло не так: ${error}` });
     }

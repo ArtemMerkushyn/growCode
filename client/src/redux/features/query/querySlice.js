@@ -41,7 +41,19 @@ export const getMyQueries = createAsyncThunk(
             console.log(error);
         }
     }
-)
+);
+
+export const updateQuery = createAsyncThunk(
+    'query/updateQuery',
+    async ({ id, updatedQuery }) => {
+        try {
+            const { data } = await axios.put(`/queries/${id}`, updatedQuery);
+            return data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+);
 
 export const querySlice = createSlice({
     name: 'query',
@@ -83,7 +95,23 @@ export const querySlice = createSlice({
         },
         [getMyQueries.rejected]: (state) => {
             state.loading = false;
-        }
+        },
+        // update query
+        [updateQuery.pending]: (state) => {
+            state.loading = true;
+        },
+        [updateQuery.fulfilled]: (state, action) => {
+            state.loading = false;
+            const index = state.queries.findIndex(query => query.id === action.payload.id);
+            if (index !== -1) {
+                state.queries[index].imgUrl = action.payload.question;
+                state.queries[index].title = action.payload.text;
+                state.queries[index].text = action.payload.topic;
+            }
+        },
+        [updateQuery.rejected]: (state) => {
+            state.loading = false;
+        },
     },
 });
 

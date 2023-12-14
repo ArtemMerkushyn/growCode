@@ -15,6 +15,7 @@ import { PostPageEdit } from './pages/PostPageEdit.jsx';
 import { UserPage } from './pages/UserPage.jsx';
 import { AddQueryPage } from './pages/AddQueryPage.jsx';
 import { QueryPage } from './pages/QueryPage.jsx';
+import { QueryPageEdit } from './pages/QueryPageEdit.jsx';
 
 export const router = createBrowserRouter([
     {
@@ -72,6 +73,10 @@ export const router = createBrowserRouter([
             {
                 path: 'query/:id',
                 element: <QueryPage/>
+            },
+            {
+                path: 'query/:id/edit',
+                element: <QueryPageEdit/>
             },
             {
                 path: 'vacancies',
