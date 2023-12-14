@@ -3,28 +3,9 @@ import Moment from 'react-moment';
 import { AiFillEye, AiOutlineMessage } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import TextareaAutosize from 'react-textarea-autosize';
-import { AiFillChrome } from "react-icons/ai";
-import { BiLogoReact } from "react-icons/bi";
-import { LiaNode } from "react-icons/lia";
-import { BsIncognito } from "react-icons/bs";
-import { useSelector } from 'react-redux';
+import { AvatarUsernameLink } from './AvatarUsernameLink';
 
-export const PostItem = ({ post }) => {
-    const user = useSelector((state) => state.auth.user);
-
-    const getProfessionIcon = (profession) => {
-        switch (profession) {
-            case 'front-end developer':
-                return <BiLogoReact />;
-            case 'backend developer':
-                return <LiaNode />;
-            case 'full-stack developer':
-                return <AiFillChrome />;
-            default:
-                return <BsIncognito />;
-        }
-    };
-    
+export const PostItem = ({ post }) => {  
     return (
         <div className='post-item'>
             <Link to={`/${post._id}`}>
@@ -35,20 +16,7 @@ export const PostItem = ({ post }) => {
                 </div> 
             </Link>
             <div className="post-item__info">
-                <div className="post-item__info-username">
-                    <div className='userpage__info-avatar'>
-                        {post.profession ? (
-                            getProfessionIcon(post.profession)
-                        ) : (
-                            <BsIncognito />
-                        )}
-                    </div>
-                    <div className='userpage__info-username'>
-                        <Link className='link' to={post && post?.author === user?._id ? `/me` : `/user/${post?.author}`}>
-                            {post ? (<div>{post.username}</div>):(<div>загрузка</div>)}
-                        </Link>
-                    </div>
-                </div>
+                <AvatarUsernameLink about={post}/>
                 <div className="post-item__date">
                     <Moment date={post.createdAt} format='DD.MM.YY HH:mm'/>
                 </div>

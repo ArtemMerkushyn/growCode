@@ -4,10 +4,6 @@ import axios from '../utils/axios.js';
 import Moment from 'react-moment';
 import TextareaAutosize from 'react-textarea-autosize';
 import { AiFillEye, AiOutlineMessage, AiOutlineSend } from 'react-icons/ai';
-import { AiFillChrome } from "react-icons/ai";
-import { BiLogoReact } from "react-icons/bi";
-import { LiaNode } from "react-icons/lia";
-import { BsIncognito } from "react-icons/bs";
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { PostItem } from '../components/PostItem.jsx';
@@ -16,6 +12,7 @@ import { CommentItem } from '../components/CommentItem.jsx';
 import { removePost } from '../redux/features/post/postSlice.js';
 import { HiPencilAlt } from "react-icons/hi";
 import { BsTrash3Fill } from "react-icons/bs";
+import { AvatarUsernameLink } from '../components/AvatarUsernameLink.jsx';
 
 export const PostPage = () => {
     const [ post, setPost ] = useState(null);
@@ -81,19 +78,6 @@ export const PostPage = () => {
         window.location.reload();
     }
 
-    const getProfessionIcon = (profession) => {
-        switch (profession) {
-            case 'front-end developer':
-                return <BiLogoReact />;
-            case 'backend developer':
-                return <LiaNode />;
-            case 'full-stack developer':
-                return <AiFillChrome />;
-            default:
-                return <BsIncognito />;
-        }
-    };
-
     if (!post) {
         return (
             <div>
@@ -111,18 +95,7 @@ export const PostPage = () => {
                     ) : null}
                 </div> 
                 <div className="post-item__info">
-                    <div className="post-item__info-username">
-                        <div className='userpage__info-avatar'>
-                            {post && post.profession ? (
-                                getProfessionIcon(post.profession)
-                            ) : (
-                                <BsIncognito />
-                            )}
-                        </div>
-                        <div className='userpage__info-username'>
-                            {post ? (<Link className='link' to={post && post?.author === user?._id ? `/me` : `/user/${post?.author}`}>{post.username}</Link>):(<div>загрузка</div>)}
-                        </div>
-                    </div>
+                    <AvatarUsernameLink about={post} />
                     <div className="post-item__date">
                         <Moment date={post.createdAt} format='DD.MM.YY HH:mm'/>
                     </div>
