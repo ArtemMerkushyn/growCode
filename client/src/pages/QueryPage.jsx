@@ -1,19 +1,13 @@
 import axios from '../utils/axios.js';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import Moment from 'react-moment';
-import { Link } from 'react-router-dom';
-import { AiFillChrome } from "react-icons/ai";
-import { BiLogoReact } from "react-icons/bi";
-import { LiaNode } from "react-icons/lia";
-import { BsIncognito } from "react-icons/bs";
 import TextareaAutosize from 'react-textarea-autosize';
 import { CountItem } from '../components/CountItem.jsx';
+import { AvatarUsernameLink } from '../components/AvatarUsernameLink.jsx';
 
 export const QueryPage = () => {
     const [query, setQuery] = useState(null);
-    const user = useSelector((state) => state.auth.user);
 
     const params = useParams();
 
@@ -26,19 +20,6 @@ export const QueryPage = () => {
         fetchQuery();
     }, [fetchQuery]);
 
-    const getProfessionIcon = (profession) => {
-        switch (profession) {
-            case 'front-end developer':
-                return <BiLogoReact />;
-            case 'backend developer':
-                return <LiaNode />;
-            case 'full-stack developer':
-                return <AiFillChrome />;
-            default:
-                return <BsIncognito />;
-        }
-    };
-
     if (!query) {
         return (
             <div>
@@ -50,20 +31,7 @@ export const QueryPage = () => {
     return (
         <div className='query-page'>
             <div className="query-item">
-                <div className="post-item__info-username">
-                    <div className='userpage__info-avatar'>
-                        {query && query.profession ? (
-                            getProfessionIcon(query.profession)
-                        ) : (
-                            <BsIncognito />
-                        )}
-                    </div>
-                    <div className='userpage__info-username'>
-                        <Link className='link' to={query && query?.author === user?._id ? `/me` : `/user/${query?.author}`}>
-                            {query ? (<div>{query.username}</div>):(<div>загрузка</div>)}
-                        </Link>
-                    </div>
-                </div>
+                <AvatarUsernameLink about={query}/>
                 <div className="query-item__topic tag">{query.topic}</div>
                 <div className="post-item__date">
                     {query && query.createdAt ? (
