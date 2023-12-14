@@ -1,13 +1,17 @@
 import axios from '../utils/axios.js';
 import React, { useCallback, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import Moment from 'react-moment';
 import TextareaAutosize from 'react-textarea-autosize';
 import { CountItem } from '../components/CountItem.jsx';
 import { AvatarUsernameLink } from '../components/AvatarUsernameLink.jsx';
+import { HiPencilAlt } from "react-icons/hi";
+import { BsTrash3Fill } from "react-icons/bs";
+import { useSelector } from 'react-redux';
 
 export const QueryPage = () => {
     const [query, setQuery] = useState(null);
+    const { user } = useSelector((state) => state.auth);
 
     const params = useParams();
 
@@ -50,6 +54,14 @@ export const QueryPage = () => {
             </div>
             <div className="query-page__item">
                 <CountItem about={query} />
+                {user?._id === query.author && (
+                    <div className="action-btns">
+                        <Link to={`/${params.id}/edit`}>
+                            <div className='action-btn'><HiPencilAlt/></div>
+                        </Link>
+                        <button className='action-btn'><BsTrash3Fill /></button>
+                    </div>
+                )}
             </div>
         </div>
     );

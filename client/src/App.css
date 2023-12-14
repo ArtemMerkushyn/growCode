@@ -953,6 +953,12 @@ a.query {
 /*=================================================*\
 #Query-page
 \*=================================================*/
+.query-page__item:nth-child(3) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .query-page__item-text {
     width: 100%;
 }
