@@ -29,10 +29,6 @@ export const PostPage = () => {
         setPost(data);
     }, [params.id]);
 
-    useEffect(() => {
-        fetchPost();
-    }, [fetchPost]);
-
     const fetchComments = useCallback(async () => {
         try {
             dispatch(getPostComments(params.id));
@@ -41,18 +37,10 @@ export const PostPage = () => {
         }
     }, [params.id, dispatch]);
 
-    useEffect(() => {
-        fetchComments();
-    }, [fetchComments]);
-
     const fetchPosts = useCallback(async () => {
         const { data } = await axios.get('/posts');
         setPopularPosts(data.popularPosts);
     }, []);
-
-    useEffect(() => {
-        fetchPosts();
-    }, [fetchPosts]);
 
     const hamdleSubmit = () => {
         try {
@@ -77,6 +65,18 @@ export const PostPage = () => {
         navigate('/blog');
         window.location.reload();
     }
+
+    useEffect(() => {
+        fetchPost();
+    }, [fetchPost]);
+
+    useEffect(() => {
+        fetchPosts();
+    }, [fetchPosts]);
+
+    useEffect(() => {
+        fetchComments();
+    }, [fetchComments]);
 
     if (!post) {
         return (

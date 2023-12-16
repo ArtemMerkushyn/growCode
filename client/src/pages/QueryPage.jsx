@@ -11,12 +11,14 @@ import { HiPencilAlt } from "react-icons/hi";
 import { BsTrash3Fill } from "react-icons/bs";
 import { AiOutlineSend } from 'react-icons/ai';
 import { toast } from 'react-toastify';
-import { createReply } from '../redux/features/reply/replySlice.js';
+import { createReply, getQueryReplies } from '../redux/features/reply/replySlice.js';
+import { ReplyItem } from '../components/ReplyItem.jsx';
 
 export const QueryPage = () => {
     const [query, setQuery] = useState(null);
     const [reply, setReply] = useState('');
     const { user } = useSelector((state) => state.auth);
+    const { replies } = useSelector((state) => state.reply);
 
     const params = useParams();
     const dispatch = useDispatch();
@@ -26,6 +28,14 @@ export const QueryPage = () => {
         const { data } = await axios.get(`/queries/${params.id}`);
         setQuery(data);
     }, [params.id]);
+
+    const fetchQueryReplies = useCallback(async () => {
+        try {
+            dispatch(getQueryReplies(params.id));
+        } catch (error) {
+            console.log(error)
+        }
+    }, [dispatch, params.id]);
 
     const handleDeleteQuery = () => {
         dispatch(deleteQuery(params.id));
@@ -44,6 +54,10 @@ export const QueryPage = () => {
     useEffect(() => {
         fetchQuery();
     }, [fetchQuery]);
+
+    useEffect(() => {
+        fetchQueryReplies();
+    }, [fetchQueryReplies])
 
     if (!query) {
         return (
@@ -103,6 +117,9 @@ export const QueryPage = () => {
                     <AiOutlineSend />
                 </button>
             </form>
+            {replies && replies.map(reply => (
+                <ReplyItem key={reply._id} reply={reply} />
+            ))}
         </div>
     );
 };

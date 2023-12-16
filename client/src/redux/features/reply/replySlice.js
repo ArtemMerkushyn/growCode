@@ -36,6 +36,7 @@ export const replySlice = createSlice(
         initialState,
         reducers: {},
         extraReducers: {
+            // create reply
             [createReply.pending]: (state) => {
                 state.loading = true;
             },
@@ -45,7 +46,18 @@ export const replySlice = createSlice(
             },
             [createReply.rejected]: (state) => {
                 state.loading = false;
-            }
+            },
+            // get query replies
+            [getQueryReplies.pending]: (state) => {
+                state.loading = true;
+            },
+            [getQueryReplies.fulfilled]: (state, action) => {
+                state.loading = false;
+                state.replies = action.payload;
+            },
+            [getQueryReplies.rejected]: (state) => {
+                state.loading = false;
+            },
         },
     }
 );
