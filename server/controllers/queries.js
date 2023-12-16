@@ -101,3 +101,19 @@ export const updateQuery = async (req, res) => {
         res.json({ message: `Щось пішло не так: ${error}` });
     }
 }
+
+// delete query
+export const deleteQuery = async (req, res) => {
+    try {
+        const query = await Query.findByIdAndDelete(req.params.id);
+        if(!query) return res.json({ message: 'Даненного питання немає в базі' });
+
+        await User.findByIdAndUpdate(req.userId, {
+            $pull: { queries: req.params.id },
+        });
+
+        res.json({ message: 'Ви успішно видалили Ваше питання' });
+    } catch (error) {
+        es.json({ message: `Щось пішло не так: ${error}` });
+    }
+}

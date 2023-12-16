@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { checkAuth } from '../utils/checkAuth.js';
-import { createQuery, getAllQueries, getMyQueries, getQueryById, getUserQueries, updateQuery } from '../controllers/queries.js';
+import { createQuery, deleteQuery, getAllQueries, getMyQueries, getQueryById, getUserQueries, updateQuery } from '../controllers/queries.js';
 
 const router = Router();
 
@@ -11,7 +11,6 @@ router.post('/', checkAuth, createQuery);
 // get all queries
 // http://localhost:8080/api/queries
 router.get('/', getAllQueries);
-export default router;
 
 // get my queries
 // http://localhost:8080/api/queries/user/me
@@ -28,3 +27,9 @@ router.get('/:id', getQueryById);
 // update query
 // http://localhost:8080/api/queries/:id
 router.put('/:id', checkAuth, updateQuery);
+
+// delete query
+// http://localhost:8080/api/queries/:id
+router.delete('/:id', checkAuth, deleteQuery);
+
+export default router;
