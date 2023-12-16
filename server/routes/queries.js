@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { checkAuth } from '../utils/checkAuth.js';
-import { createQuery, deleteQuery, getAllQueries, getMyQueries, getQueryById, getUserQueries, updateQuery } from '../controllers/queries.js';
+import { createQuery, deleteQuery, getAllQueries, getMyQueries, getQueryById, getQueryReplies, getUserQueries, updateQuery } from '../controllers/queries.js';
 
 const router = Router();
 
@@ -31,5 +31,9 @@ router.put('/:id', checkAuth, updateQuery);
 // delete query
 // http://localhost:8080/api/queries/:id
 router.delete('/:id', checkAuth, deleteQuery);
+
+// get query replies
+// http://localhost:8080/api/queries/:id/replies
+router.get('/:id/replies', getQueryReplies);
 
 export default router;

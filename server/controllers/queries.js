@@ -1,5 +1,6 @@
 import Query from '../models/Query.js';
 import User from '../models/User.js';
+import Reply from '../models/Reply.js';
 
 // create query
 export const createQuery = async (req, res) => {
@@ -114,6 +115,21 @@ export const deleteQuery = async (req, res) => {
 
         res.json({ message: 'Ви успішно видалили Ваше питання' });
     } catch (error) {
-        es.json({ message: `Щось пішло не так: ${error}` });
+        res.json({ message: `Щось пішло не так: ${error}` });
+    }
+}
+
+// get query replies
+export const getQueryReplies = async (req, res) => {
+    try {
+        const query = await Query.findById(req.params.id);
+        const listQueries = await Promise.all(
+            query.replies.map((query) => {
+                return Reply.findById(query);
+            })
+        );
+        res.json(listQueries);
+    } catch (error) {
+        
     }
 }
