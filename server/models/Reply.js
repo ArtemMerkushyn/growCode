@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const ReplySchema = new mongoose.model(
+const ReplySchema = new mongoose.Schema(
     {
         reply: {
             type: String,

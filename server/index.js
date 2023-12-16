@@ -6,6 +6,7 @@ import authRoute from './routes/auth.js';
 import postsRoute from './routes/posts.js';
 import commentsRoute from './routes/comments.js';
 import queriesRoute from "./routes/queries.js";
+import repliesRoute from './routes/replies.js';
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use('/api/auth', authRoute);
 app.use('/api/posts', postsRoute);
 app.use('/api/comments/', commentsRoute);
 app.use('/api/queries', queriesRoute);
+app.use('/api/replies', repliesRoute);
 
 
 async function start() {
