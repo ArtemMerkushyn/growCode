@@ -55,6 +55,18 @@ export const updateQuery = createAsyncThunk(
     }
 );
 
+export const deleteQuery = createAsyncThunk(
+    'query/deleteQuery',
+    async (id) => {
+        try {
+            const { data } = await axios.delete(`/queries/${id}`);
+            return data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+)
+
 export const querySlice = createSlice({
     name: 'query',
     initialState,
@@ -110,6 +122,20 @@ export const querySlice = createSlice({
             }
         },
         [updateQuery.rejected]: (state) => {
+            state.loading = false;
+        },
+        [deleteQuery.pending]: (state) => {
+            state.loading = true;
+        },
+        [deleteQuery.fulfilled]: (state, action) => {
+            state.loading = false;
+            if(action.payload && action.payload._id) {
+                state.queries = state.queries.filter(
+                    (query) => query._id !== action.payload._id,
+                );
+            }
+        },
+        [deleteQuery.rejected]: (state) => {
             state.loading = false;
         },
     },
