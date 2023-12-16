@@ -4,25 +4,29 @@ const QuerySchema = new mongoose.Schema(
     {
         question: {
             type: String,
-            required: true
+            required: true,
         },
         text: {
             type: String,
         },
         topic: {
             type: String,
-            default: 'інше'
+            default: 'інше',
         },
         username: { type: String },
         author: { 
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'User'
+            ref: 'User',
         },
         profession: { type: String },
         views: {
             type: Number,
-            default: 0
-        }
+            default: 0,
+        },
+        replies: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Reply',
+        }],
     },
     { timestamps: true },
 );
