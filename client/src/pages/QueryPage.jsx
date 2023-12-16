@@ -1,24 +1,32 @@
 import axios from '../utils/axios.js';
 import React, { useCallback, useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import Moment from 'react-moment';
 import TextareaAutosize from 'react-textarea-autosize';
 import { CountItem } from '../components/CountItem.jsx';
 import { AvatarUsernameLink } from '../components/AvatarUsernameLink.jsx';
 import { HiPencilAlt } from "react-icons/hi";
 import { BsTrash3Fill } from "react-icons/bs";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteQuery } from '../redux/features/query/querySlice.js';
 
 export const QueryPage = () => {
     const [query, setQuery] = useState(null);
     const { user } = useSelector((state) => state.auth);
 
     const params = useParams();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const fetchQuery = useCallback(async () => {
         const { data } = await axios.get(`/queries/${params.id}`);
         setQuery(data);
     }, [params.id]);
+
+    const handleDeleteQuery = () => {
+        dispatch(deleteQuery(params.id));
+        navigate('/me');
+    }
 
     useEffect(() => {
         fetchQuery();
@@ -59,7 +67,7 @@ export const QueryPage = () => {
                         <Link to={`/query/${query._id}/edit`}>
                             <div className='action-btn'><HiPencilAlt/></div>
                         </Link>
-                        <button className='action-btn'><BsTrash3Fill /></button>
+                        <button className='action-btn' onClick={handleDeleteQuery}><BsTrash3Fill /></button>
                     </div>
                 )}
             </div>
