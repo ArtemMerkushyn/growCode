@@ -33,8 +33,8 @@ export const QueryPage = () => {
     }
 
     const handleSumitReply = () => {
-        if(!user) toast('Вам потрібно авторизуватися для того щоб відповісти на питання');
-        if(!reply.trim()) toast('Поле для відповіді на питання не може бути порожнім');
+        if(!user) return toast('Вам потрібно авторизуватися для того щоб відповісти на питання');
+        if(!reply.trim()) return toast('Поле для відповіді на питання не може бути порожнім');
         const queryId = params.id;
         dispatch(createReply({ queryId, reply }));
         setReply('');
