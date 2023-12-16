@@ -18,6 +18,18 @@ export const createReply = createAsyncThunk(
     }
 );
 
+export const getQueryReplies = createAsyncThunk(
+    'reply/getQueryReplies',
+    async (queryId) => {
+        try {
+            const { data } = await axios.get(`/queries/${queryId}/replies`);
+            return data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+);
+
 export const replySlice = createSlice(
     {
         name: 'reply',

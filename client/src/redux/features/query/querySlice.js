@@ -65,7 +65,7 @@ export const deleteQuery = createAsyncThunk(
             console.log(error);
         }
     }
-)
+);
 
 export const querySlice = createSlice({
     name: 'query',
