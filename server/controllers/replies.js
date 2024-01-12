@@ -1,3 +1,4 @@
+import { query } from "express";
 import Query from "../models/Query.js";
 import Reply from "../models/Reply.js";
 import User from "../models/User.js";
@@ -43,6 +44,22 @@ export const updateReply = async (req, res) => {
 
         await reply.save();
         res.json({ reply, message: 'Ви успішно змінили Вашу відповідь' });
+    } catch (error) {
+        res.json({ message: `Щось пішло нетак. ${error}` });
+    }
+}
+
+//delete reply 
+export const deleteReply = async (req, res) => {
+    try {
+        const reply = await Reply.findByIdAndDelete(req.params.id);
+        if(!reply) return res.json({ message: 'Такої відповіді не існує' });
+
+        await Query.findByIdAndUpdate(reply.query, {
+            $pull: { queries: req.params.id }
+        });
+
+        res.json({ message: 'Ви успішно видалили вашу відповідь' });
     } catch (error) {
         res.json({ message: `Щось пішло нетак. ${error}` });
     }
