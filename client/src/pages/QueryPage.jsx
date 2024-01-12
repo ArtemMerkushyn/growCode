@@ -3,7 +3,6 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import Moment from 'react-moment';
 import TextareaAutosize from 'react-textarea-autosize';
-import { CountItem } from '../components/CountItem.jsx';
 import { AvatarUsernameLink } from '../components/AvatarUsernameLink.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteQuery } from '../redux/features/query/querySlice.js';
@@ -13,6 +12,7 @@ import { AiOutlineSend } from 'react-icons/ai';
 import { toast } from 'react-toastify';
 import { createReply, getQueryReplies } from '../redux/features/reply/replySlice.js';
 import { ReplyItem } from '../components/ReplyItem.jsx';
+import { AiFillEye, AiOutlineMessage } from 'react-icons/ai';
 
 export const QueryPage = () => {
     const [query, setQuery] = useState(null);
@@ -39,7 +39,7 @@ export const QueryPage = () => {
 
     const handleDeleteQuery = () => {
         dispatch(deleteQuery(params.id));
-        navigate('/me');
+        navigate('/forum');
     }
 
     const handleSumitReply = () => {
@@ -88,7 +88,15 @@ export const QueryPage = () => {
                 />
             </div>
             <div className="query-page__item">
-                <CountItem about={query} />
+                <div className='count'>
+                    <div className='count__item'>
+                        <AiFillEye className='fs'/><span>{query.views}</span>
+                    </div>
+                    <div className='count__item'>
+                        <AiOutlineMessage />{' '}
+                        <span>{replies?.length || 0} </span>
+                    </div>
+                </div>
                 {user?._id === query.author && (
                     <div className="action-btns">
                         <Link to={`/query/${query._id}/edit`}>

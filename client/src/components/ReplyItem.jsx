@@ -4,11 +4,12 @@ import { AvatarUsernameLink } from './AvatarUsernameLink.jsx';
 import TextareaAutosize from 'react-textarea-autosize';
 import Moment from 'react-moment';
 import { Change } from './Change.jsx';
-import { updateReply } from '../redux/features/reply/replySlice.js';
+import { deleteReply, updateReply } from '../redux/features/reply/replySlice.js';
 import { Ok } from './Ok.jsx';
 import { Cancel } from './Cancel.jsx';
 import { toast } from 'react-toastify';
 import { Delete } from './Delete.jsx';
+import PropTypes from 'prop-types';
 
 export const ReplyItem = ({ reply }) => {
     const { user } = useSelector((state) => state.auth);
@@ -26,13 +27,18 @@ export const ReplyItem = ({ reply }) => {
     const submitEditReplyHandler = async () => {
         try {
             const id = reply._id;
-            if(replyText === '')  return toast('Ваша відповідь не може бути порожньою');
+            if(replyText === '')  return toast('Ваша відповідь не може бути пустою');
             dispatch(updateReply({ id, replyText }));
             setEditReply(false);
             window.location.reload();
         } catch (error) {
             console.log(error)
         }
+    }
+
+    const deleteReplyHandler = () => {
+        const replyId = reply._id;
+        dispatch(deleteReply({ replyId }));
     }
 
     return (
@@ -69,11 +75,15 @@ export const ReplyItem = ({ reply }) => {
                         ) : (
                         <div>
                             <Change onClickFunc={openFormToEditReply}/>
-                            <Delete/>
+                            <Delete onClickFunc={deleteReplyHandler}/>
                         </div>
                     )}
                 </div>
             )}
         </div>
     );
+}
+
+ReplyItem.propTypes = {
+    reply: PropTypes.object
 }

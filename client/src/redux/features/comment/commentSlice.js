@@ -37,7 +37,7 @@ export const updateComment = createAsyncThunk(
 
 export const removeComment = createAsyncThunk(
     'comment/removePost',
-    async ( {commentId} ) => {
+    async ({ commentId }) => {
         try {
             const { data } = await axios.delete(`/comments/${commentId}`);
             return data;

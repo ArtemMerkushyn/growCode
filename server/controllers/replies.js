@@ -56,10 +56,10 @@ export const deleteReply = async (req, res) => {
         if(!reply) return res.json({ message: 'Такої відповіді не існує' });
 
         await Query.findByIdAndUpdate(reply.query, {
-            $pull: { queries: req.params.id }
+            $pull: { replies: req.params.id }
         });
 
-        res.json({ message: 'Ви успішно видалили вашу відповідь', reply });
+        res.json({ reply, message: 'Ви успішно видалили вашу відповідь'});
     } catch (error) {
         res.json({ message: `Щось пішло нетак. ${error}` });
     }

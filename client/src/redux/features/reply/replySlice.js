@@ -13,16 +13,20 @@ export const createReply = createAsyncThunk(
             const { data } = await axios.post(`/replies/${queryId}`, { queryId, reply });
             return data;
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     }
 );
 
 export const deleteReply = createAsyncThunk(
     'reply/deleteReply',
-    async (id) => {
-        const { data } = axios.delete(`/replies/${id}`);
-        return data;
+    async ({ replyId }) => {
+        try {
+            const { data } = await axios.delete(`/replies/${replyId}`);
+            return data;
+        } catch (error) {
+            console.log(error);
+        }
     }
 )
 
@@ -98,6 +102,7 @@ export const replySlice = createSlice(
             [deleteReply.fulfilled]: (state, action) => {
                 state.loading = false;
                 const idToRemove = action.payload.reply._id;
+                //const idToRemove = action.payload?.reply?._id;
                 state.replies = state.replies.filter(reply => reply._id !== idToRemove);
             },
             [deleteReply.rejected]: (state) => {
