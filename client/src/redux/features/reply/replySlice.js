@@ -18,6 +18,14 @@ export const createReply = createAsyncThunk(
     }
 );
 
+export const deleteReply = createAsyncThunk(
+    'reply/deleteReply',
+    async (id) => {
+        const { data } = axios.delete(`/replies/${id}`);
+        return data;
+    }
+)
+
 export const getQueryReplies = createAsyncThunk(
     'reply/getQueryReplies',
     async (queryId) => {
@@ -81,6 +89,18 @@ export const replySlice = createSlice(
                 if(index !==  -1) state.replies[index].reply = action.payload.reply;
             },
             [updateReply.rejected]: (state) => {
+                state.loading = false;
+            },
+            //delete reply
+            [deleteReply.pending]: (state) => {
+                state.loading = true;
+            },
+            [deleteReply.fulfilled]: (state, action) => {
+                state.loading = false;
+                const idToRemove = action.payload.reply._id;
+                state.replies = state.replies.filter(reply => reply._id !== idToRemove);
+            },
+            [deleteReply.rejected]: (state) => {
                 state.loading = false;
             },
         },

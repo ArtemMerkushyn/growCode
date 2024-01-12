@@ -59,7 +59,7 @@ export const deleteReply = async (req, res) => {
             $pull: { queries: req.params.id }
         });
 
-        res.json({ message: 'Ви успішно видалили вашу відповідь' });
+        res.json({ message: 'Ви успішно видалили вашу відповідь', reply });
     } catch (error) {
         res.json({ message: `Щось пішло нетак. ${error}` });
     }
