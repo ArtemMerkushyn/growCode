@@ -1,13 +1,39 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AvatarUsernameLink } from './AvatarUsernameLink.jsx';
 import TextareaAutosize from 'react-textarea-autosize';
 import Moment from 'react-moment';
+import { Change } from './Change.jsx';
+import { updateReply } from '../redux/features/reply/replySlice.js';
+import { Ok } from './Ok.jsx';
+import { Cancel } from './Cancel.jsx';
+import { toast } from 'react-toastify';
+import { Delete } from './Delete.jsx';
 
 export const ReplyItem = ({ reply }) => {
     const { user } = useSelector((state) => state.auth);
-    const [ editReply, setEditComment ] = useState(false);
+    const [ editReply, setEditReply ] = useState(false);
     const [ replyText, setReplyText ] = useState(reply.reply);
+
+    const dispatch = useDispatch();
+
+    const openFormToEditReply = () => setEditReply(true);
+    const closeFormToEditReply = () => {
+        setReplyText(reply.reply);
+        setEditReply(false);
+    }
+
+    const submitEditReplyHandler = async () => {
+        try {
+            const id = reply._id;
+            if(replyText === '')  return toast('Ваша відповідь не може бути порожньою');
+            dispatch(updateReply({ id, replyText }));
+            setEditReply(false);
+            window.location.reload();
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <div className='comment'>
@@ -37,13 +63,13 @@ export const ReplyItem = ({ reply }) => {
                 <div className="comment-action__wrapper">
                     {editReply ? (
                         <div>
-                            <button className='link'>Оновити</button>
-                            <button className='link'>Відмінити</button>
+                            <Ok onClickFunc={submitEditReplyHandler}/>
+                            <Cancel onClickFunc={closeFormToEditReply}/>
                         </div>
                         ) : (
                         <div>
-                            <button className='link'>Редагувати</button>
-                            <button className='link'>Видалити</button>
+                            <Change onClickFunc={openFormToEditReply}/>
+                            <Delete/>
                         </div>
                     )}
                 </div>

@@ -4,6 +4,11 @@ import TextareaAutosize from 'react-textarea-autosize';
 import Moment from 'react-moment';
 import { removeComment, updateComment } from '../redux/features/comment/commentSlice.js';
 import { AvatarUsernameLink } from './AvatarUsernameLink.jsx';
+import { Change } from './Change.jsx';
+import { Ok } from './Ok.jsx';
+import { Cancel } from './Cancel.jsx';
+import { Delete } from './Delete.jsx';
+import { toast } from 'react-toastify';
 
 export const CommentItem = ({ cmt }) => {
     const { user } = useSelector((state) => state.auth);
@@ -21,6 +26,7 @@ export const CommentItem = ({ cmt }) => {
     const submitEditCommentHandler = async () => {
         try {
             const id = cmt._id;
+            if(commentText === '') return toast('Ваш коментар не може бути пустим');
             const updatedComment  = { commentText };
             await dispatch(updateComment({ id, updatedComment }));
             setEditComment(false);
@@ -63,14 +69,14 @@ export const CommentItem = ({ cmt }) => {
                 <div className="comment-action__wrapper">
                     {editComment ? (
                         <div>
-                            <button className='link' onClick={submitEditCommentHandler}>Оновити</button>
-                            <button className='link' onClick={cancelEditHandler}>Відмінити</button>
+                            <Ok onClickFunc={submitEditCommentHandler}/>
+                            <Cancel onClickFunc={cancelEditHandler}/>
                         </div>
                         ) : (
-                        <div>
-                            <button className='link' onClick={openFormToEditComment}>Редагувати</button>
-                            <button className='link' onClick={removeCommentHandler}>Видалити</button>
-                        </div>
+                            <div>
+                                <Change onClickFunc={openFormToEditComment}/>
+                                <Delete onClickFunc={removeCommentHandler}/>
+                            </div>
                     )}
                 </div>
             )}

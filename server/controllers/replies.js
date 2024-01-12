@@ -31,3 +31,19 @@ export const createReply = async (req, res) => {
         res.json({ message: `Щось пішло нетак. ${error}` });
     }
 }
+
+//update reply
+export const updateReply = async (req, res) => {
+    try {
+        const { replyText } = req.body;
+        const reply = await Reply.findByIdAndUpdate(req.params.id);
+        if(!reply) return res.json({message: 'Такої відповіді не існує'});
+
+        reply.reply = replyText;
+
+        await reply.save();
+        res.json({ reply, message: 'Ви успішно змінили Вашу відповідь' });
+    } catch (error) {
+        res.json({ message: `Щось пішло нетак. ${error}` });
+    }
+}
