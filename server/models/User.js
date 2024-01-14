@@ -35,6 +35,10 @@ const UserShema = new mongoose.Schema(
                 ref: 'Query',
             },
         ],
+        portfolio: {
+            type: mongoose.Types.ObjectId,
+            ref: 'Portfolio',
+        }
     },
     { timestamps: true },
 );
