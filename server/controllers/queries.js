@@ -109,6 +109,9 @@ export const deleteQuery = async (req, res) => {
         const query = await Query.findByIdAndDelete(req.params.id);
         if(!query) return res.json({ message: 'Даненного питання немає в базі' });
 
+        const repliesIds = query.replies;
+        await Reply.deleteMany({ _id: { $in: repliesIds } });
+
         await User.findByIdAndUpdate(req.userId, {
             $pull: { queries: req.params.id },
         });
