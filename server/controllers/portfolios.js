@@ -4,7 +4,7 @@ import User from '../models/User.js';
 export const createPortfolio = async (req, res) => {
     try {
         const user = await User.findById(req.userId);
-        if(!user) return res.json({ message: 'Користувач не знайдений' })
+        if(!user) return res.json({ message: 'Користувач не знайдений' });
 
         const newPortfolio = new Portfolio({
             ...req.body,
