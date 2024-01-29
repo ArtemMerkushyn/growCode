@@ -2,7 +2,7 @@ import React from 'react';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import { CountItem } from './CountItem';
-import { AvatarUsernameLink } from './AvatarUsernameLink';
+import { AvatarUsernameLink } from './AvatarUsernameLink/AvatarUsernameLink.jsx';
 
 export const QueryItem = ({ query }) => {
     return (

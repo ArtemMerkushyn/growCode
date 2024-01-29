@@ -12,7 +12,7 @@ import { CommentItem } from '../components/CommentItem.jsx';
 import { removePost } from '../redux/features/post/postSlice.js';
 import { HiPencilAlt } from "react-icons/hi";
 import { BsTrash3Fill } from "react-icons/bs";
-import { AvatarUsernameLink } from '../components/AvatarUsernameLink.jsx';
+import { AvatarUsernameLink } from '../components/AvatarUsernameLink/AvatarUsernameLink.jsx';
 
 export const PostPage = () => {
     const [ post, setPost ] = useState(null);

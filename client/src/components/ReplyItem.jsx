@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AvatarUsernameLink } from './AvatarUsernameLink.jsx';
+import { AvatarUsernameLink } from './AvatarUsernameLink/AvatarUsernameLink.jsx';
 import TextareaAutosize from 'react-textarea-autosize';
 import Moment from 'react-moment';
 import { Change } from './Change.jsx';

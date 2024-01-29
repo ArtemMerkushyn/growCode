@@ -79,10 +79,6 @@ button.link {
     transition: all .2s linear;
 }
 
-.post-item__info-username:hover .link::before{
-    transform: translateX(0%);
-}
-
 .action-btns {
     display: flex;
     gap: 10px;
@@ -345,7 +341,10 @@ button.link {
     display: flex;
     align-items: center;
     gap: 5px;
-    
+}
+
+.post-item__info-username:hover .link::before{
+    transform: translateX(0%);
 }
 
 .post-item__info-username .userpage__info-avatar {

@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import Moment from 'react-moment';
 import TextareaAutosize from 'react-textarea-autosize';
-import { AvatarUsernameLink } from '../components/AvatarUsernameLink.jsx';
+import { AvatarUsernameLink } from '../components/AvatarUsernameLink/AvatarUsernameLink.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteQuery } from '../redux/features/query/querySlice.js';
 import { HiPencilAlt } from "react-icons/hi";

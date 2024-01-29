@@ -3,7 +3,7 @@ import Moment from 'react-moment';
 import { AiFillEye, AiOutlineMessage } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import TextareaAutosize from 'react-textarea-autosize';
-import { AvatarUsernameLink } from './AvatarUsernameLink';
+import { AvatarUsernameLink } from './AvatarUsernameLink/AvatarUsernameLink.jsx';
 
 export const PostItem = ({ post }) => {  
     return (
