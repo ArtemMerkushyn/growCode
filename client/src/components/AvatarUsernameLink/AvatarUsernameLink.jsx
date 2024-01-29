@@ -6,6 +6,7 @@ import { BiLogoReact } from 'react-icons/bi';
 import { LiaNode } from 'react-icons/lia';
 import { BsIncognito } from 'react-icons/bs';
 import { Avatar, Username, Wrapper } from './AvatarUsernameLink.styled.js';
+import PropTypes from 'prop-types';
 
 export const AvatarUsernameLink = ({ about }) => {
     const user = useSelector((state) => state.auth.user);
@@ -40,4 +41,8 @@ export const AvatarUsernameLink = ({ about }) => {
             </Wrapper>
         </Link>
     );
+}
+
+AvatarUsernameLink.propTypes = {
+    about: PropTypes.object,
 }

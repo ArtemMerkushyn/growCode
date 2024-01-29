@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { MdCancel } from "react-icons/md";
+import { MdCancel } from 'react-icons/md';
 
 export const Cancel = ({ onClickFunc }) => {
     return (
