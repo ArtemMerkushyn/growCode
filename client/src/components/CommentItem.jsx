@@ -6,7 +6,7 @@ import { removeComment, updateComment } from '../redux/features/comment/commentS
 import { AvatarUsernameLink } from './AvatarUsernameLink/AvatarUsernameLink.jsx';
 import { Change } from './Change.jsx';
 import { Ok } from './Ok.jsx';
-import { Cancel } from './Cancel.jsx';
+import { Cancel } from './Cancel/Cancel.jsx';
 import { Delete } from './Delete.jsx';
 import { toast } from 'react-toastify';
 

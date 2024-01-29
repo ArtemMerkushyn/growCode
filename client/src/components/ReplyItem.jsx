@@ -6,7 +6,7 @@ import Moment from 'react-moment';
 import { Change } from './Change.jsx';
 import { deleteReply, updateReply } from '../redux/features/reply/replySlice.js';
 import { Ok } from './Ok.jsx';
-import { Cancel } from './Cancel.jsx';
+import { Cancel } from './Cancel/Cancel.jsx';
 import { toast } from 'react-toastify';
 import { Delete } from './Delete.jsx';
 import PropTypes from 'prop-types';
