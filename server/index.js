@@ -13,7 +13,7 @@ const app = express();
 
 //constants
 const PORT = 8080;
-export const secred = 'secredtoken';
+const secred = 'secredtoken';
 
 //middleware
 app.use(cors()); //для того щоб можно було відправляти з різних ip, запроси до нашого серверу
@@ -41,3 +41,5 @@ async function start() {
     }
 }
 start();
+
+export { secred };
