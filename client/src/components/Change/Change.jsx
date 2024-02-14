@@ -1,11 +1,12 @@
-import { HiPencilAlt } from "react-icons/hi";
+import { HiPencilAlt } from 'react-icons/hi';
 import PropTypes from 'prop-types';
+import { ChangeBtn } from './Change.styled';
 
 export const Change = ({ onClickFunc }) => {
     return (
-        <button onClick={onClickFunc} className='change'>
+        <ChangeBtn onClick={onClickFunc} className='change'>
             <HiPencilAlt/>
-        </button>
+        </ChangeBtn>
     );
 }
 

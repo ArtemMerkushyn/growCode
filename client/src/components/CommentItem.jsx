@@ -4,7 +4,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 import Moment from 'react-moment';
 import { removeComment, updateComment } from '../redux/features/comment/commentSlice.js';
 import { AvatarUsernameLink } from './AvatarUsernameLink/AvatarUsernameLink.jsx';
-import { Change } from './Change.jsx';
+import { Change } from './Change/Change.jsx';
 import { Ok } from './Ok.jsx';
 import { Cancel } from './Cancel/Cancel.jsx';
 import { Delete } from './Delete.jsx';

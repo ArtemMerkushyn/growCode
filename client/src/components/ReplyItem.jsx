@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AvatarUsernameLink } from './AvatarUsernameLink/AvatarUsernameLink.jsx';
 import TextareaAutosize from 'react-textarea-autosize';
 import Moment from 'react-moment';
-import { Change } from './Change.jsx';
+import { Change } from './Change/Change.jsx';
 import { deleteReply, updateReply } from '../redux/features/reply/replySlice.js';
 import { Ok } from './Ok.jsx';
 import { Cancel } from './Cancel/Cancel.jsx';
