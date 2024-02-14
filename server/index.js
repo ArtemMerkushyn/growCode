@@ -31,7 +31,8 @@ app.use('/api/portfolios', portfoliosRoute);
 async function start() {
     try {
         await mongoose.connect(
-            `mongodb+srv://test:testpassword@cluster0.p68m5mc.mongodb.net/`
+            //`mongodb+srv://test:testpassword@cluster0.p68m5mc.mongodb.net/`
+            `mongodb+srv://merkushyndev13:merkushyndev13@cluster0.3euspic.mongodb.net/`
         );
         app.listen(PORT, () => {
             console.log(`server started on: http://localhost:${PORT}`)
