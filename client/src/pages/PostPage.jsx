@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { PostItem } from '../components/PostItem.jsx';
 import { createComment, getPostComments } from '../redux/features/comment/commentSlice.js';
-import { CommentItem } from '../components/CommentItem.jsx';
+import { CommentItem } from '../components/CommentItem/CommentItem.jsx';
 import { removePost } from '../redux/features/post/postSlice.js';
 import { HiPencilAlt } from "react-icons/hi";
 import { BsTrash3Fill } from "react-icons/bs";

@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TextareaAutosize from 'react-textarea-autosize';
 import Moment from 'react-moment';
-import { removeComment, updateComment } from '../redux/features/comment/commentSlice.js';
-import { AvatarUsernameLink } from './AvatarUsernameLink/AvatarUsernameLink.jsx';
-import { Change } from './Change/Change.jsx';
-import { Ok } from './Ok.jsx';
-import { Cancel } from './Cancel/Cancel.jsx';
-import { Delete } from './Delete.jsx';
+import { removeComment, updateComment } from '../../redux/features/comment/commentSlice.js';
+import { AvatarUsernameLink } from '../AvatarUsernameLink/AvatarUsernameLink.jsx';
+import { Change } from '../Change/Change.jsx';
+import { Ok } from '../Ok.jsx';
+import { Cancel } from '../Cancel/Cancel.jsx';
+import { Delete } from '../Delete.jsx';
 import { toast } from 'react-toastify';
+import { CommentActionWrapper, CommentInfo, CommentText } from './CommentItem.styled.js';
 
 export const CommentItem = ({ cmt }) => {
     const { user } = useSelector((state) => state.auth);
@@ -42,15 +43,13 @@ export const CommentItem = ({ cmt }) => {
     }
 
     return (
-        <div className='comment'>
-            <div className="comment__item">
-                <div className="comment__item-info">
+        <>
+            <>
+                <CommentInfo>
                     <AvatarUsernameLink about={cmt}/>
-                    <div className="comment__item-info--date">
-                        <Moment date={cmt.createdAt} format='DD.MM.YY HH:mm'/>
-                    </div>
-                </div>
-                <div className="comment__item-text">
+                    <Moment date={cmt.createdAt} format='DD.MM.YY HH:mm'/>
+                </CommentInfo>
+                <CommentText>
                     {editComment ? (
                         <form
                             onSubmit={e => e.preventDefault()}
@@ -63,23 +62,23 @@ export const CommentItem = ({ cmt }) => {
                             />
                         </form>
                     ) : (<TextareaAutosize disabled spellCheck={false} value={cmt.comment} />)}
-                </div>
-            </div>
+                </CommentText>
+            </>
             {user?._id === cmt.author &&(
-                <div className="comment-action__wrapper">
+                <div>
                     {editComment ? (
-                        <div>
+                        <CommentActionWrapper>
                             <Ok onClickFunc={submitEditCommentHandler}/>
                             <Cancel onClickFunc={cancelEditHandler}/>
-                        </div>
+                        </CommentActionWrapper>
                         ) : (
-                            <div>
+                            <CommentActionWrapper>
                                 <Change onClickFunc={openFormToEditComment}/>
                                 <Delete onClickFunc={removeCommentHandler}/>
-                            </div>
+                            </CommentActionWrapper>
                     )}
                 </div>
             )}
-        </div>
+        </>
     );
 }
